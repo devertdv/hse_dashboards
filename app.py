@@ -135,13 +135,14 @@ app.layout = html.Div(
 
 @app.callback(
     Output('figure-author', "children"),
-    Input('table-with-figure-author', "selected_rows"))
-def update_figure_authors(selected_rows):
+    Input('table-with-figure-author', "selected_rows"),
+    Input('table-with-figure-author', "sort_by"))
+def update_figure_authors(selected_rows, sort_by):
     return html.Div(
             [
                 html.H3("Authors rate bar chart"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_authors, selected_rows),
+                    figure=create_bar_chart(df_authors, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -153,13 +154,14 @@ def update_figure_authors(selected_rows):
 
 @app.callback(
     Output('figure-organization', "children"),
-    Input('table-with-figure-organization', "selected_rows"))
-def update_figure_organizations(selected_rows):
+    Input('table-with-figure-organization', "selected_rows"),
+    Input('table-with-figure-organization', "sort_by"))
+def update_figure_organizations(selected_rows, sort_by):
     return html.Div(
             [
                 html.H3("Organizations rate bar chart"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_organizations, selected_rows),
+                    figure=create_bar_chart(df_organizations, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -171,13 +173,14 @@ def update_figure_organizations(selected_rows):
 
 @app.callback(
     Output('figure-funding', "children"),
-    Input('table-with-figure-funding', "selected_rows"))
-def update_figure_fundings(selected_rows):
+    Input('table-with-figure-funding', "selected_rows"),
+    Input('table-with-figure-funding', "sort_by"))
+def update_figure_fundings(selected_rows, sort_by):
     return html.Div(
             [
                 html.H3("Fundings rate bar chart"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_fundings, selected_rows),
+                    figure=create_bar_chart(df_fundings, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -189,13 +192,14 @@ def update_figure_fundings(selected_rows):
 
 @app.callback(
     Output('figure-country', "children"),
-    Input('table-with-figure-country', "selected_rows"))
-def update_figure_countries(selected_rows):
+    Input('table-with-figure-country', "selected_rows"),
+    Input('table-with-figure-country', "sort_by"))
+def update_figure_countries(selected_rows, sort_by):
     return html.Div(
             [
                 html.H3("Countries rate bar chart"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_countries, selected_rows),
+                    figure=create_bar_chart(df_countries, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -208,13 +212,14 @@ def update_figure_countries(selected_rows):
 
 @app.callback(
     Output('figure-source', "children"),
-    Input('table-with-figure-source', "selected_rows"))
-def update_figure_sources(selected_rows):
+    Input('table-with-figure-source', "selected_rows"),
+    Input('table-with-figure-source', "sort_by"))
+def update_figure_sources(selected_rows, sort_by):
     return html.Div(
             [
                 html.H3("Sources rate bar chart"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_sources, selected_rows),
+                    figure=create_bar_chart(df_sources, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
