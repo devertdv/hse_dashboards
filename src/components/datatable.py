@@ -8,13 +8,15 @@ def create_datatable(df):
                 columns=[{'id': c, 'name': c} for c in df.columns],
 
                 fixed_rows={'headers': True},
+                sort_action="native",
+                sort_mode="single",
+                sort_by=[],
                 editable=True,
                 row_selectable='multi',
                 selected_rows=[i for i in range(df.shape[0])],
 
                 style_table={
                     'height': 300,
-                    'overflowY': 'scroll'
                 },
                 style_cell={
                     'minWidth': 200,
@@ -27,5 +29,4 @@ def create_datatable(df):
                     'whiteSpace': 'normal',
                     'height': 'auto',
                 },
-                fill_width=False
     )
