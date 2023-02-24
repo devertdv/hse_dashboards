@@ -19,3 +19,6 @@ df_countries.sort_values("Rate", ascending=True)
 df_sources = pd.read_csv('data/sources_rate.csv', header=None, sep=",")
 df_sources.columns = ["Source", "Rate"]
 df_sources.sort_values("Rate", ascending=True)
+
+df_big_table = pd.read_csv('data/top-2000_pub_by relevance.csv', sep=',')
+df_big_table["Year"] = df_big_table["Year"].astype('object')
