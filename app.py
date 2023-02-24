@@ -1,12 +1,7 @@
-import pandas as pd
-
 import dash
-from dash import html, dcc, dash_table
-import dash_bootstrap_components as dbc
-import plotly.express as px
-import plotly.graph_objects as go
+from dash import html, dcc
 from dash.dependencies import Input, Output, State
-from src.components.read_files import *
+
 from src.components.bar_chart import *
 from src.components.datatable import *
 
@@ -14,6 +9,16 @@ app = dash.Dash(__name__)
 
 app.layout = html.Div(
     children=[
+        html.Div([
+            'Field',
+            dcc.Dropdown(
+                {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
+                'psy',
+                id='clientside-graph-indicator'
+            )
+            ]
+        ),
+
         html.Div(
             [
                 html.Div(
@@ -128,7 +133,32 @@ app.layout = html.Div(
                 ),
             ],
             className="row flex-display",
-        )
+        ),
+
+        html.Div([
+            html.H3("Publications dinamic"),
+            dcc.Graph(
+                figure=dict(
+                    data=[
+                        dict(
+                            x=df_dinamic['Year'],
+                            y=df_dinamic['Number'],
+                            name='China',
+                            marker=dict(
+                                color='rgb(26, 118, 255)'
+                            )
+                        )
+                    ],
+                    layout=dict(
+                        margin=dict(l=40, r=80, t=20, b=30)
+                    )
+                ),
+                style={'height': 300},
+                id='my-graph-example'
+            )
+        ])
+
+
     ]
 )
 
