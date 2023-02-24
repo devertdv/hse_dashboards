@@ -19,3 +19,6 @@ df_countries.sort_values("Rate", ascending=True)
 df_sources = pd.read_csv('data/sources_rate.csv', header=None, sep=",")
 df_sources.columns = ["Source", "Rate"]
 df_sources.sort_values("Rate", ascending=True)
+
+df_dinamic = pd.read_csv('data/publications_dinamic.csv', header=None, sep=",")
+df_dinamic.columns = ["Year", "Number"]
