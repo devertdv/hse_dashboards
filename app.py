@@ -3,7 +3,10 @@ from dash import html, dcc
 from dash.dependencies import Input, Output, State
 
 from src.components.bar_chart import *
-from src.components.datatable import *
+from src.components.big_table import *
+from src.components.read_files import *
+from src.components.table_chart import *
+from src.components.treemap_chart import *
 
 app = dash.Dash(__name__)
 
@@ -24,7 +27,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.H3("Authors rate table"),
-                        create_datatable(df_authors),
+                        create_chart_datatable(df_authors),
                         html.Div(
                             [
                                 html.Button("Download CSV", id="btn-csv-author", className="btn-csv"),
@@ -47,7 +50,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.H3("Organizations rate table"),
-                        create_datatable(df_organizations),
+                        create_chart_datatable(df_organizations),
                         html.Div(
                             [
                                 html.Button("Download CSV", id="btn-csv-organization", className="btn-csv"),
@@ -70,7 +73,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.H3("Fundings rate table"),
-                        create_datatable(df_fundings),
+                        create_chart_datatable(df_fundings),
                         html.Div(
                             [
                                 html.Button("Download CSV", id="btn-csv-funding", className="btn-csv"),
@@ -93,7 +96,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.H3("Countries rate table"),
-                        create_datatable(df_countries),
+                        create_chart_datatable(df_countries),
                         html.Div(
                             [
                                 html.Button("Download CSV", id="btn-csv-country", className="btn-csv"),
@@ -116,7 +119,7 @@ app.layout = html.Div(
                 html.Div(
                     [
                         html.H3("Sources rate table"),
-                        create_datatable(df_sources),
+                        create_chart_datatable(df_sources),
                         html.Div(
                             [
                                 html.Button("Download CSV", id="btn-csv-source", className="btn-csv"),
@@ -135,32 +138,58 @@ app.layout = html.Div(
             className="row flex-display",
         ),
 
-        html.Div([
-            html.H3("Publications dinamic"),
-            dcc.Graph(
-                figure=dict(
-                    data=[
-                        dict(
-                            x=df_dinamic['Year'],
-                            y=df_dinamic['Number'],
-                            name='China',
-                            marker=dict(
-                                color='rgb(26, 118, 255)'
+        html.Div(
+            [
+                html.H3("Publications dinamic"),
+                dcc.Graph(
+                    figure=dict(
+                        data=[
+                            dict(
+                                x=df_dinamic['Year'],
+                                y=df_dinamic['Number'],
+                                name='China',
+                                marker=dict(
+                                    color='rgb(26, 118, 255)'
+                                )
                             )
+                        ],
+                        layout=dict(
+                            margin=dict(l=40, r=80, t=20, b=30)
                         )
-                    ],
-                    layout=dict(
-                        margin=dict(l=40, r=80, t=20, b=30)
-                    )
+                    ),
+                    style={'height': 300},
+                    id='my-graph-example'
                 ),
-                style={'height': 300},
-                id='my-graph-example'
-            )
-        ])
+            ]
+        ),
 
+        html.Div(
+            html.Div(
+                [
+                    html.H3("Word count treemap"),
+                    dcc.Graph(
+                        figure=create_treemap_chart(df_treemap_table),
+                        id="treemap-chart",
+                        style={'height': 500},
+                    )
+                ],
+                id="treemap_container",
+                className="pretty_container",
+            ),
+        ),
 
+        html.Div(
+            [
+                html.Div(
+                    id="big-table",
+                ),
+            ]
+        )
     ]
 )
+
+
+# callbacks
 
 
 @app.callback(
@@ -313,6 +342,14 @@ def func(n_clicks, selected_rows):
 def func(n_clicks, selected_rows):
     dff = df_sources.iloc[selected_rows]
     return dcc.send_data_frame(dff.to_csv, "sources_rate.csv")
+
+
+@app.callback(
+    Output("big-table", "children"),
+    Input("treemap-chart", "clickData")
+)
+def update_big_table(clickData):
+    return create_big_table(df_big_table, clickData)
 
 
 if __name__ == '__main__':

@@ -1,7 +1,7 @@
 import pandas as pd
 from dash import dash_table
 
-def create_datatable(df):
+def create_chart_datatable(df):
     return dash_table.DataTable(
                 id=f'table-with-figure-{df.columns[0].lower()}',
                 data=df.to_dict('records'),

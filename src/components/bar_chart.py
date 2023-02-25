@@ -3,7 +3,6 @@ import textwrap as tw
 from src.components.read_files import *
 
 def create_bar_chart(df, selected_rows=[], sort_by=[]):
-    print(sort_by)
     dff = df.iloc[selected_rows]
     dff[dff.columns[0]] = dff[dff.columns[0]].apply(lambda x: "<br>".join(tw.wrap(x, width=40)))
 
