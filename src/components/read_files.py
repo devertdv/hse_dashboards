@@ -20,5 +20,14 @@ df_sources = pd.read_csv('data/sources_rate.csv', header=None, sep=",")
 df_sources.columns = ["Source", "Rate"]
 df_sources.sort_values("Rate", ascending=True)
 
+df_dinamic = pd.read_csv('data/publications_dinamic.csv', header=None, sep=",")
+df_dinamic.columns = ["Year", "Number"]
+
 df_big_table = pd.read_csv('data/top-2000_pub_by relevance.csv', sep=',')
+df_big_table["Author Keywords"] = df_big_table["Author Keywords"].fillna('')
+df_big_table["Author Keywords"] = df_big_table["Author Keywords"].apply(str.lower)
 df_big_table["Year"] = df_big_table["Year"].astype('object')
+
+df_treemap_table = df_big_table.iloc[:, [17]]
+df_treemap_table = df_treemap_table.rename(columns={"Author Keywords": "keywords"})
+df_treemap_table = df_treemap_table[~df_treemap_table["keywords"].isnull()]
