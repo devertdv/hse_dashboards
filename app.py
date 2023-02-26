@@ -7,6 +7,8 @@ from src.components.big_table import *
 from src.components.read_files import *
 from src.components.table_chart import *
 from src.components.treemap_chart import *
+from src.components.updated_tables_chart import *
+
 
 app = dash.Dash(__name__)
 
@@ -140,7 +142,7 @@ app.layout = html.Div(
 
         html.Div(
             [
-                html.H3("Publications dinamic"),
+                html.H3("Publications dynamic"),
                 dcc.Graph(
                     figure=dict(
                         data=[
