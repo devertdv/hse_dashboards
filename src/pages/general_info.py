@@ -216,16 +216,25 @@ general_info_layout = html.Div(
 def update_figure_authors(selected_rows, sort_by):
     return html.Div(
             [
-                html.H3("Authors rate bar chart"),
+                html.H3("Authors - Rate"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_authors, selected_rows, sort_by),
+                    figure=create_bar_chart_rate(df_authors, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
                         'width': 650
                     }
                 ),
-            ]
+                html.H3("Authors - Number of docs"),
+                dcc.Graph(
+                    figure=create_bar_chart_docs_num(df_authors, selected_rows, sort_by),
+                    style={
+                        'overflowY': 'scroll',
+                        'height': 350,
+                        'width': 650
+                    }
+                )
+            ],
     )
 
 @app.callback(
@@ -235,9 +244,18 @@ def update_figure_authors(selected_rows, sort_by):
 def update_figure_organizations(selected_rows, sort_by):
     return html.Div(
             [
-                html.H3("Organizations rate bar chart"),
+                html.H3("Organizations - Rate"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_organizations, selected_rows, sort_by),
+                    figure=create_bar_chart_rate(df_organizations, selected_rows, sort_by),
+                    style={
+                        'overflowY': 'scroll',
+                        'height': 350,
+                        'width': 650
+                    }
+                ),
+                html.H3("Organizations - Number of docs"),
+                dcc.Graph(
+                    figure=create_bar_chart_docs_num(df_organizations, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -254,9 +272,18 @@ def update_figure_organizations(selected_rows, sort_by):
 def update_figure_fundings(selected_rows, sort_by):
     return html.Div(
             [
-                html.H3("Fundings rate bar chart"),
+                html.H3("Fundings - Rate"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_fundings, selected_rows, sort_by),
+                    figure=create_bar_chart_rate(df_fundings, selected_rows, sort_by),
+                    style={
+                        'overflowY': 'scroll',
+                        'height': 350,
+                        'width': 650
+                    }
+                ),
+                html.H3("Fundings - Number of docs"),
+                dcc.Graph(
+                    figure=create_bar_chart_docs_num(df_fundings, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -273,9 +300,18 @@ def update_figure_fundings(selected_rows, sort_by):
 def update_figure_countries(selected_rows, sort_by):
     return html.Div(
             [
-                html.H3("Countries rate bar chart"),
+                html.H3("Countries - Rate"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_countries, selected_rows, sort_by),
+                    figure=create_bar_chart_rate(df_countries, selected_rows, sort_by),
+                    style={
+                        'overflowY': 'scroll',
+                        'height': 350,
+                        'width': 650
+                    }
+                ),
+                html.H3("Countries - Number of docs"),
+                dcc.Graph(
+                    figure=create_bar_chart_docs_num(df_countries, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
@@ -293,9 +329,18 @@ def update_figure_countries(selected_rows, sort_by):
 def update_figure_sources(selected_rows, sort_by):
     return html.Div(
             [
-                html.H3("Sources rate bar chart"),
+                html.H3("Sources - Rate"),
                 dcc.Graph(
-                    figure=create_bar_chart(df_sources, selected_rows, sort_by),
+                    figure=create_bar_chart_rate(df_sources, selected_rows, sort_by),
+                    style={
+                        'overflowY': 'scroll',
+                        'height': 350,
+                        'width': 650
+                    }
+                ),
+                html.H3("Sources - Number of docs"),
+                dcc.Graph(
+                    figure=create_bar_chart_docs_num(df_sources, selected_rows, sort_by),
                     style={
                         'overflowY': 'scroll',
                         'height': 350,
