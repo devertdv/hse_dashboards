@@ -1,11 +1,13 @@
+import pandas as pd
 from dash import html, dcc
-from dash.dependencies import Input, Output
+from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 from app import app
 from src.components.bar_chart import *
 from src.components.big_table import *
 from src.components.pie_chart import *
+from src.components.select_rows_big_table import *
 from src.components.table_chart import *
 from src.components.treemap_chart import *
 from src.components.updated_tables_chart import *
@@ -73,13 +75,14 @@ top_relevant_layout = html.Div(
 
                 html.Div(
                     [
+                        dcc.Store(id="selected-rows-big-table"),
                         html.Div(
                             id="big-table",
                         ),
                         html.Div(
                             [
-                                html.Button("Download CSV", id="btn-csv-source", className="btn-csv"),
-                                dcc.Download(id="download-csv-source"),
+                                html.Button("Download CSV", id="btn-csv-big-table", className="btn-csv"),
+                                dcc.Download(id="download-csv-big-table"),
                             ]
                         )
                     ],
@@ -126,13 +129,6 @@ top_relevant_layout = html.Div(
 
 # callbacks
 
-@app.callback(
-    Output("big-table", "children"),
-    Input("treemap-chart", "clickData")
-)
-def update_big_table(clickData):
-    return create_big_table(df_big_table, clickData)
-
 
 @app.callback(
     Output("circle_doctype", "figure"),
@@ -156,3 +152,35 @@ def update_pie_chart(clickData):
 )
 def update_pie_chart(clickData):
     return create_pie_chart(df_big_table,'Publisher', clickData)
+
+
+@app.callback(
+    Output("selected-rows-big-table", "data"),
+    Input("treemap-chart", "clickData")
+)
+def selected_rows_table(clickData):
+    df = pd.DataFrame(select_rows_big_table(df_big_table, clickData))
+    return df.to_json(date_format='iso')
+
+
+@app.callback(
+    Output("big-table", "children"),
+    Input("selected-rows-big-table", "data")
+)
+def update_big_table(data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    return create_big_table(df_big_table, data)
+
+
+@app.callback(
+    Output("download-csv-big-table", "data"),
+    Input("btn-csv-big-table", "n_clicks"),
+    State("selected-rows-big-table", "data"),
+    prevent_initial_call=True,
+)
+def func(n_clicks, data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = df_big_table.iloc[data]
+    return dcc.send_data_frame(dff.to_csv, "top_2000_docs_by_relevance.csv")
