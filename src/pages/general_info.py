@@ -4,7 +4,6 @@ import dash_bootstrap_components as dbc
 
 from app import app
 from src.components.bar_chart import *
-from src.components.big_table import *
 from src.components.table_chart import *
 from src.components.updated_tables_chart import *
 

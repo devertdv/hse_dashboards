@@ -135,7 +135,7 @@ top_relevant_layout = html.Div(
     Input("treemap-chart", "clickData")
 )
 def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table,'Document Type', clickData)
+    return create_pie_chart(df_big_table_chart,'Document Type', clickData)
 
 
 @app.callback(
@@ -143,7 +143,7 @@ def update_pie_chart(clickData):
     Input("treemap-chart", "clickData")
 )
 def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table,'Source title', clickData)
+    return create_pie_chart(df_big_table_chart,'Source title', clickData)
 
 
 @app.callback(
@@ -151,7 +151,7 @@ def update_pie_chart(clickData):
     Input("treemap-chart", "clickData")
 )
 def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table,'Publisher', clickData)
+    return create_pie_chart(df_big_table_chart,'Publisher', clickData)
 
 
 @app.callback(
@@ -159,7 +159,7 @@ def update_pie_chart(clickData):
     Input("treemap-chart", "clickData")
 )
 def selected_rows_table(clickData):
-    df = pd.DataFrame(select_rows_big_table(df_big_table, clickData))
+    df = pd.DataFrame(select_rows_big_table(df_big_table_chart, clickData))
     return df.to_json(date_format='iso')
 
 
@@ -170,7 +170,7 @@ def selected_rows_table(clickData):
 def update_big_table(data):
     df = pd.read_json(data)
     data = df[0].tolist()
-    return create_big_table(df_big_table, data)
+    return create_big_table(df_big_table_chart, data)
 
 
 @app.callback(
@@ -182,5 +182,5 @@ def update_big_table(data):
 def func(n_clicks, data):
     df = pd.read_json(data)
     data = df[0].tolist()
-    dff = df_big_table.iloc[data]
+    dff = df_big_table_chart.iloc[data]
     return dcc.send_data_frame(dff.to_csv, "top_2000_docs_by_relevance.csv")
