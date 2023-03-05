@@ -3,8 +3,8 @@ from dash import dash_table
 def create_big_table(df, select_rows):
 
     return dash_table.DataTable(
-                        data=df.iloc[:, [0, 2, 3, 4, 13, 17, 38, 49]].to_dict('records'),
-                        columns=[{'id': c, 'name': c} for c in df.iloc[:, [0, 2, 3, 4, 13, 17, 38, 49]].columns],
+                        data=df.to_dict('records'),
+                        columns=[{'id': c, 'name': c} for c in df.columns],
 
                         fixed_rows={'headers': True},
                         sort_action="native",
