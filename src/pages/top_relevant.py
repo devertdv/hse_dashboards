@@ -28,7 +28,7 @@ top_relevant_layout = html.Div(
                         html.Hr(),
                         dbc.NavLink("Общая информация по научной области", href="/general_info", active="exact"),
                         html.Hr(),
-                        dbc.NavLink("Инфографика по наиболее релевантным статьям", href="/top_relevant", active="exact"),
+                        dbc.NavLink("Инфографика по наиболее цитируемым статьям", href="/top_cited", active="exact"),
                     ],
                     vertical=True,
                     pills=True,

@@ -31,7 +31,7 @@ def update_output_div(pathname):
         return homepage.homepage_layout
     elif pathname == "/general_info":
         return general_info.general_info_layout
-    elif pathname == "/top_relevant":
+    elif pathname == "/top_cited":
         return top_relevant.top_relevant_layout
     return html.Div(
         [
