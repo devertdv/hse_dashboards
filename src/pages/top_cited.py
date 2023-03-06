@@ -170,7 +170,9 @@ def selected_rows_table(clickData):
 def update_big_table(data):
     df = pd.read_json(data)
     data = df[0].tolist()
-    return create_big_table(df_big_table_chart, data)
+    dff = pd.concat([df_big_table_chart.iloc[data], df_big_table_chart.drop(df_big_table_chart.iloc[data].index)])
+    data = [i for i in range(len(data))]
+    return create_big_table(dff, data)
 
 
 @app.callback(
@@ -179,8 +181,8 @@ def update_big_table(data):
     State("selected-rows-big-table", "data"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data):
+def download_big_table(n_clicks, data):
     df = pd.read_json(data)
     data = df[0].tolist()
     dff = df_big_table_chart.iloc[data]
-    return dcc.send_data_frame(dff.to_csv, "top_2000_docs_by_relevance.csv")
+    return dcc.send_data_frame(dff.to_csv, "top_2000_cited_docs.csv")

@@ -2,7 +2,7 @@ from dash import html, dcc
 from dash.dependencies import Input, Output
 
 from app import app
-from src.pages import homepage, general_info, top_relevant
+from src.pages import homepage, general_info, top_cited
 
 url_content_layout = html.Div(
     [
@@ -18,7 +18,7 @@ app.validation_layout = html.Div(
     url_content_layout,
     homepage.homepage_layout,
     general_info.general_info_layout,
-    top_relevant.top_relevant_layout
+    top_cited.top_relevant_layout
     ]
 )
 
@@ -32,7 +32,7 @@ def update_output_div(pathname):
     elif pathname == "/general_info":
         return general_info.general_info_layout
     elif pathname == "/top_cited":
-        return top_relevant.top_relevant_layout
+        return top_cited.top_relevant_layout
     return html.Div(
         [
             html.H1("404: Not found", className="text-danger"),
