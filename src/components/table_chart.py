@@ -1,7 +1,9 @@
-import pandas as pd
 from dash import dash_table
 
-def create_datatable(df):
+def create_chart_datatable(df):
+
+    df = df.sort_values(by=[df.columns[1], df.columns[0]], ascending=[False, True])
+
     return dash_table.DataTable(
                 id=f'table-with-figure-{df.columns[0].lower()}',
                 data=df.to_dict('records'),
@@ -16,7 +18,7 @@ def create_datatable(df):
                 selected_rows=[i for i in range(df.shape[0])],
 
                 style_table={
-                    'height': 300,
+                    'height': 800,
                 },
                 style_cell={
                     'minWidth': 200,

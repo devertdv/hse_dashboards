@@ -1,3 +1,5 @@
-env/
-.venv/
-src/components/__pycache__
+*env
+*venv
+*__pycache__
+*idea
+*vscode
