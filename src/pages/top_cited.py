@@ -131,36 +131,45 @@ top_relevant_layout = html.Div(
 
 
 @app.callback(
-    Output("circle_doctype", "figure"),
-    Input("treemap-chart", "clickData")
-)
-def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table_chart,'Document Type', clickData)
-
-
-@app.callback(
-    Output("circle_source_title", "figure"),
-    Input("treemap-chart", "clickData")
-)
-def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table_chart,'Source title', clickData)
-
-
-@app.callback(
-    Output("circle_pub", "figure"),
-    Input("treemap-chart", "clickData")
-)
-def update_pie_chart(clickData):
-    return create_pie_chart(df_big_table_chart,'Publisher', clickData)
-
-
-@app.callback(
     Output("selected-rows-big-table", "data"),
     Input("treemap-chart", "clickData")
 )
 def selected_rows_table(clickData):
     df = pd.DataFrame(select_rows_big_table(df_big_table_chart, clickData))
     return df.to_json(date_format='iso')
+
+
+@app.callback(
+    Output("circle_doctype", "figure"),
+    Input("selected-rows-big-table", "data")
+)
+def update_pie_chart_doc_type(data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = df_big_table_chart.iloc[data]
+    return create_pie_chart(dff, 'Document Type')
+
+
+@app.callback(
+    Output("circle_source_title", "figure"),
+    Input("selected-rows-big-table", "data")
+)
+def update_pie_chart_source_title(data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = df_big_table_chart.iloc[data]
+    return create_pie_chart(dff, 'Source title')
+
+
+@app.callback(
+    Output("circle_pub", "figure"),
+    Input("selected-rows-big-table", "data")
+)
+def update_pie_chart_publisher(data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = df_big_table_chart.iloc[data]
+    return create_pie_chart(dff, 'Publisher')
 
 
 @app.callback(
