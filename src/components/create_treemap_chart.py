@@ -13,22 +13,21 @@ def create_treemap_chart(df):
 
 
     dv = dict_df["count"]
-    dv.insert(0, "count")
-
+    dv.insert(0, 0)
     dk = dict_df["keywords"]
     dk.insert(0, "keywords")
-
     par = ["keywords" for _ in range(100)]
     par.insert(0, "")
+    num_displayed_keywords = 20
 
-
+    color_scale=[[0, 'white'], [0.1, 'rgb(240, 246, 253)'], [0.5, 'rgb(151, 174, 217)'], [0.7, 'rgb(45, 75, 151)'], [1, 'rgb(23, 45, 101)']]
     fig = go.Figure(go.Treemap(
-                    values=dv[0:20],
-                    labels=dk[0:20],
+                    values=dv[:num_displayed_keywords],
+                    labels=dk[:num_displayed_keywords],
+                    parents=par[:num_displayed_keywords],
+                    marker_colorscale=color_scale,
+                    # marker_cmid=0,
                     textinfo="label+value",
-                    parents=par,
-                    root_color="snow",
-                    marker_colorscale='blues',
                     textposition='middle center',
                     textfont=dict(size=20)
                     ))
