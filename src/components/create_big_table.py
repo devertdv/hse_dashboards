@@ -18,7 +18,7 @@ def create_big_table(df, select_rows):
                         page_current= 0,
                         page_size= 10,
                         style_header={
-                            'backgroundColor': 'midnightblue',
+                            'backgroundColor': 'rgb(23, 45, 101)',
                             'color': 'white',
                             'fontWeight': 'bold'
                         },

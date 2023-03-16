@@ -1,7 +1,7 @@
 def select_rows_big_table(df, click_data):
 
     select_rows = []
-    if click_data is not None and "entry" in click_data["points"][0] and click_data["points"][0]["entry"] != click_data["points"][0]["label"]:
+    if click_data is not None and click_data["points"][0]["parent"] != "":
         keyword = click_data["points"][0]["label"]
         for idx, row in df.iterrows():
             cell = row["Author Keywords"].split("; ")
