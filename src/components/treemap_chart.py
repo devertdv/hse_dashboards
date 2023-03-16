@@ -1,5 +1,5 @@
 import plotly.graph_objects as go
-import pandas as pd
+
 
 def create_treemap_chart(df):
     words_dict = {}
@@ -25,12 +25,13 @@ def create_treemap_chart(df):
     fig = go.Figure(go.Treemap(
                     values=dv[0:20],
                     labels=dk[0:20],
-                    textinfo = "label+value",
+                    textinfo="label+value",
                     parents=par,
-                    root_color="lightgrey",
-                    marker_colorscale = 'viridis'
+                    root_color="snow",
+                    marker_colorscale='blues',
+                    textposition='middle center',
+                    textfont=dict(size=20)
                     ))
-    fig.update_layout(margin = dict(t=20, l=20, r=20, b=20))
-
+    fig.update_layout(margin=dict(t=20, l=20, r=20, b=20))
     return fig
 
