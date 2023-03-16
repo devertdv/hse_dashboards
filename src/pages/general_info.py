@@ -2,8 +2,9 @@ from dash import html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 from app import app
-from src.components.bar_chart import *
-from src.components.table_chart import *
+from src.components.create_bar_chart_docs_num import *
+from src.components.create_bar_chart_rate import *
+from src.components.create_chart_datatable import *
 from src.components.updated_tables_chart import *
 
 

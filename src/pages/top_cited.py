@@ -4,12 +4,12 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 from app import app
-from src.components.bar_chart import *
-from src.components.big_table import *
-from src.components.pie_chart import *
+from src.components.create_bar_chart_rate import *
+from src.components.create_big_table import *
+from src.components.create_pie_chart import *
 from src.components.select_rows_big_table import *
-from src.components.table_chart import *
-from src.components.treemap_chart import *
+from src.components.create_chart_datatable import *
+from src.components.create_treemap_chart import *
 from src.components.updated_tables_chart import *
 
 
@@ -143,6 +143,31 @@ def selected_rows_table(clickData):
 
 
 @app.callback(
+    Output("big-table", "children"),
+    Input("selected-rows-big-table", "data")
+)
+def update_big_table(data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = pd.concat([df_big_table_chart.iloc[data], df_big_table_chart.drop(df_big_table_chart.iloc[data].index)])
+    data = [i for i in range(len(data))]
+    return create_big_table(dff, data)
+
+
+@app.callback(
+    Output("download-excel-big-table", "data"),
+    Input("btn-excel-big-table", "n_clicks"),
+    State("selected-rows-big-table", "data"),
+    prevent_initial_call=True,
+)
+def download_big_table(n_clicks, data):
+    df = pd.read_json(data)
+    data = df[0].tolist()
+    dff = df_big_table_chart.iloc[data]
+    return dcc.send_data_frame(dff.to_excel, "top_2000_cited_docs.xlsx")
+
+
+@app.callback(
     Output("circle_doctype", "figure"),
     Input("selected-rows-big-table", "data")
 )
@@ -173,28 +198,3 @@ def update_pie_chart_publisher(data):
     data = df[0].tolist()
     dff = df_big_table_chart.iloc[data]
     return create_pie_chart(dff, 'Publisher')
-
-
-@app.callback(
-    Output("big-table", "children"),
-    Input("selected-rows-big-table", "data")
-)
-def update_big_table(data):
-    df = pd.read_json(data)
-    data = df[0].tolist()
-    dff = pd.concat([df_big_table_chart.iloc[data], df_big_table_chart.drop(df_big_table_chart.iloc[data].index)])
-    data = [i for i in range(len(data))]
-    return create_big_table(dff, data)
-
-
-@app.callback(
-    Output("download-excel-big-table", "data"),
-    Input("btn-excel-big-table", "n_clicks"),
-    State("selected-rows-big-table", "data"),
-    prevent_initial_call=True,
-)
-def download_big_table(n_clicks, data):
-    df = pd.read_json(data)
-    data = df[0].tolist()
-    dff = df_big_table_chart.iloc[data]
-    return dcc.send_data_frame(dff.to_excel, "top_2000_cited_docs.xlsx")
