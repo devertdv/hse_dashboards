@@ -1,7 +1,6 @@
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
-
 from app import app
 from src.components.bar_chart import *
 from src.components.table_chart import *
@@ -42,6 +41,8 @@ general_info_layout = html.Div(
 
         html.Div(
             [
+                html.Div(html.H5("Главная/ Общая информация по научной области")),
+                html.Div(html.H2("Общая информация по научной области")),
                 html.Div(
                     [
                         'Field',
@@ -61,8 +62,8 @@ general_info_layout = html.Div(
                                 create_chart_datatable(df_authors),
                                 html.Div(
                                     [
-                                        html.Button("Download CSV", id="btn-csv-author", className="btn-csv"),
-                                        dcc.Download(id="download-csv-author"),
+                                        html.Button("Download Excel", id="btn-excel-author", className="btn-excel"),
+                                        dcc.Download(id="download-excel-author"),
                                     ]
                                 )
                             ],
@@ -85,8 +86,8 @@ general_info_layout = html.Div(
                                 create_chart_datatable(df_organizations),
                                 html.Div(
                                     [
-                                        html.Button("Download CSV", id="btn-csv-organization", className="btn-csv"),
-                                        dcc.Download(id="download-csv-organization"),
+                                        html.Button("Download Excel", id="btn-excel-organization", className="btn-excel"),
+                                        dcc.Download(id="download-excel-organization"),
                                     ]
                                 )
                             ],
@@ -108,8 +109,8 @@ general_info_layout = html.Div(
                                 create_chart_datatable(df_fundings),
                                 html.Div(
                                     [
-                                        html.Button("Download CSV", id="btn-csv-funding", className="btn-csv"),
-                                        dcc.Download(id="download-csv-funding"),
+                                        html.Button("Download Excel", id="btn-excel-funding", className="btn-excel"),
+                                        dcc.Download(id="download-excel-funding"),
                                     ]
                                 )
                             ],
@@ -131,8 +132,8 @@ general_info_layout = html.Div(
                                 create_chart_datatable(df_countries),
                                 html.Div(
                                     [
-                                        html.Button("Download CSV", id="btn-csv-country", className="btn-csv"),
-                                        dcc.Download(id="download-csv-country"),
+                                        html.Button("Download Excel", id="btn-excel-country", className="btn-excel"),
+                                        dcc.Download(id="download-excel-country"),
                                     ]
                                 )
                             ],
@@ -154,8 +155,8 @@ general_info_layout = html.Div(
                                 create_chart_datatable(df_sources),
                                 html.Div(
                                     [
-                                        html.Button("Download CSV", id="btn-csv-source", className="btn-csv"),
-                                        dcc.Download(id="download-csv-source"),
+                                        html.Button("Download Excel", id="btn-excel-source", className="btn-excel"),
+                                        dcc.Download(id="download-excel-source"),
                                     ]
                                 )
                             ],
@@ -351,55 +352,55 @@ def update_figure_sources(selected_rows, sort_by):
 
 
 @app.callback(
-    Output("download-csv-author", "data"),
-    Input("btn-csv-author", "n_clicks"),
+    Output("download-excel-author", "data"),
+    Input("btn-excel-author", "n_clicks"),
     State('table-with-figure-author', "selected_rows"),
     prevent_initial_call=True,
 )
 def func(n_clicks, selected_rows):
     dff = df_authors.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_csv, "authors_rate.csv")
+    return dcc.send_data_frame(dff.to_excel, "authors_rate.xlsx")
 
 
 @app.callback(
-    Output("download-csv-organization", "data"),
-    Input("btn-csv-organization", "n_clicks"),
+    Output("download-excel-organization", "data"),
+    Input("btn-excel-organization", "n_clicks"),
     State('table-with-figure-organization', "selected_rows"),
     prevent_initial_call=True,
 )
 def func(n_clicks, selected_rows):
     dff = df_organizations.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_csv, "organizations_rate.csv")
+    return dcc.send_data_frame(dff.to_excel, "organizations_rate.xlsx")
 
 
 @app.callback(
-    Output("download-csv-funding", "data"),
-    Input("btn-csv-funding", "n_clicks"),
+    Output("download-excel-funding", "data"),
+    Input("btn-excel-funding", "n_clicks"),
     State('table-with-figure-funding', "selected_rows"),
     prevent_initial_call=True,
 )
 def func(n_clicks, selected_rows):
     dff = df_fundings.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_csv, "fundings_rate.csv")
+    return dcc.send_data_frame(dff.to_excel, "fundings_rate.xlsx")
 
 
 @app.callback(
-    Output("download-csv-country", "data"),
-    Input("btn-csv-country", "n_clicks"),
+    Output("download-excel-country", "data"),
+    Input("btn-excel-country", "n_clicks"),
     State('table-with-figure-country', "selected_rows"),
     prevent_initial_call=True,
 )
 def func(n_clicks, selected_rows):
     dff = df_countries.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_csv, "countries_rate.csv")
+    return dcc.send_data_frame(dff.to_excel, "countries_rate.xlsx")
 
 
 @app.callback(
-    Output("download-csv-source", "data"),
-    Input("btn-csv-source", "n_clicks"),
+    Output("download-excel-source", "data"),
+    Input("btn-excel-source", "n_clicks"),
     State('table-with-figure-source', "selected_rows"),
     prevent_initial_call=True,
 )
 def func(n_clicks, selected_rows):
     dff = df_sources.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_csv, "sources_rate.csv")
+    return dcc.send_data_frame(dff.to_excel, "sources_rate.xlsx")

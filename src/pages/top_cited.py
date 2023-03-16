@@ -46,10 +46,12 @@ top_relevant_layout = html.Div(
         ),
 
         html.Div(
-            [  
+            [
+                html.Div(html.H5("Главная/ Инфографика по наиболее цитируемым статьям")),
+                html.Div(html.H2("Инфографика по наиболее цитируемым статьям")),
                 html.Div(
                     [
-                        'Field',
+                        'Choose Field',
                         dcc.Dropdown(
                             {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
                             'psy',
@@ -75,14 +77,15 @@ top_relevant_layout = html.Div(
 
                 html.Div(
                     [
+                        html.H3("Top cited table"),
                         dcc.Store(id="selected-rows-big-table"),
                         html.Div(
                             id="big-table",
                         ),
                         html.Div(
                             [
-                                html.Button("Download CSV", id="btn-csv-big-table", className="btn-csv"),
-                                dcc.Download(id="download-csv-big-table"),
+                                html.Button("Download Excel", id="btn-excel-big-table", className="btn-excel"),
+                                dcc.Download(id="download-excel-big-table"),
                             ]
                         )
                     ],
@@ -185,8 +188,8 @@ def update_big_table(data):
 
 
 @app.callback(
-    Output("download-csv-big-table", "data"),
-    Input("btn-csv-big-table", "n_clicks"),
+    Output("download-excel-big-table", "data"),
+    Input("btn-excel-big-table", "n_clicks"),
     State("selected-rows-big-table", "data"),
     prevent_initial_call=True,
 )
@@ -194,4 +197,4 @@ def download_big_table(n_clicks, data):
     df = pd.read_json(data)
     data = df[0].tolist()
     dff = df_big_table_chart.iloc[data]
-    return dcc.send_data_frame(dff.to_csv, "top_2000_cited_docs.csv")
+    return dcc.send_data_frame(dff.to_excel, "top_2000_cited_docs.xlsx")

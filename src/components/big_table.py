@@ -17,6 +17,11 @@ def create_big_table(df, select_rows):
                         page_action='native',
                         page_current= 0,
                         page_size= 10,
+                        style_header={
+                            'backgroundColor': 'midnightblue',
+                            'color': 'white',
+                            'fontWeight': 'bold'
+                        },
 
                         style_table={
                             'height': 500,
@@ -31,5 +36,5 @@ def create_big_table(df, select_rows):
                         style_data={
                             'whiteSpace': 'normal',
                             'height': 'auto',
-                        },
+                        }
                     )
