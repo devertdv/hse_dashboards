@@ -26,7 +26,6 @@ def create_treemap_chart(df):
                     labels=dk[:num_displayed_keywords],
                     parents=par[:num_displayed_keywords],
                     marker_colorscale=color_scale,
-                    # marker_cmid=0,
                     textinfo="label+value",
                     textposition='middle center',
                     textfont=dict(size=20)

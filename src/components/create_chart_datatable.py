@@ -17,6 +17,12 @@ def create_chart_datatable(df):
                 row_selectable='multi',
                 selected_rows=[i for i in range(df.shape[0])],
 
+                style_header={
+                    'backgroundColor': 'rgb(23, 45, 101)',
+                    'color': 'white',
+                    'fontWeight': 'bold'
+                },
+
                 style_table={
                     'height': 800,
                 },

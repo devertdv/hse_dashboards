@@ -28,10 +28,11 @@ def create_pie_chart(df, column):
                         '#3358BF', '#4165C9', '#5072D0', '#6284db', '#6c8cde',
                         '#819de2', '#8ca5e5', '#96ade7', '#a1b5ea', '#abbdec',
                         '#b6c6ee', '#cbd6f3', '#d5def5', '#eaeffa', '#f5f7fd']
+    
 
     fig = go.Figure(data=[go.Pie(labels=labels,
                                 values=values,
-                                marker_colors=color_scale_bright)])
+                                marker_colors=color_scale_bright[::len(color_scale_bright) // len(labels)])])
     fig.update_traces(textposition='inside')
     fig.update_layout(uniformtext_minsize=12, uniformtext_mode='hide')
     fig.update_layout(margin=dict(t=3, l=3, r=3, b=3))

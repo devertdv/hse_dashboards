@@ -4,7 +4,6 @@ from dash.dependencies import Input, Output, State
 import dash_bootstrap_components as dbc
 
 from app import app
-from src.components.create_bar_chart_rate import *
 from src.components.create_big_table import *
 from src.components.create_pie_chart import *
 from src.components.select_rows_big_table import *
