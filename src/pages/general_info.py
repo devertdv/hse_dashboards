@@ -11,32 +11,36 @@ general_info_layout = html.Div(
     [
         html.Div(
             [
-                html.H2("Навигация", className="display-4"),
-                html.Hr(),
-                html.P(
-                    "Выберите интересующий раздел", className="lead"
-                ),
-                dbc.Nav(
+                html.Div(
                     [
-                        dbc.NavLink("Начальная страница", href="/", active="exact"),
-                        html.Hr(),
-                        dbc.NavLink("Общая информация по научной области", href="/general_info", active="exact"),
-                        html.Hr(),
-                        dbc.NavLink("Инфографика по наиболее цитируемым статьям", href="/top_cited", active="exact"),
                     ],
-                    vertical=True,
-                    pills=True,
+                    id="btn-header"
                 ),
+                # dcc.Dropdown(
+                #     [
+                #         {
+                #             "label": dcc.Link(children="Начальная страница", href="/"),
+                #             "value": "Начальная страница"
+                #         },
+                #         {
+                #             "label": dcc.Link(children="Общая информация по научной области", href="/general_info"),
+                #             "value": "Общая информация по научной области"
+                #         },
+                #         {
+                #             "label": dcc.Link(children="Инфографика по наиболее цитируемым статьям", href="/top_cited"),
+                #             "value": "Инфографика по наиболее цитируемым статьям"
+                #         },
+                #     ],
+                # ),
+                # dbc.DropdownMenu(
+                #     [
+                #         dbc.DropdownMenuItem(dbc.NavLink("Начальная страница", href="/", active="exact")),
+                #         dbc.DropdownMenuItem(dbc.NavLink("Общая информация по научной области", href="/general_info", active="exact")),
+                #         dbc.DropdownMenuItem(dbc.NavLink("Инфографика по наиболее цитируемым статьям", href="/top_cited", active="exact")),
+                #     ],
+                #     label="Dropdown",
+                # )
             ],
-            style={
-                "position": "fixed",
-                "top": 0,
-                "left": 0,
-                "bottom": 0,
-                "width": "15%",
-                "padding": "2rem 1rem",
-                "background-color": "#f8f9fa",
-            },
         ),
 
         html.Div(
@@ -195,11 +199,6 @@ general_info_layout = html.Div(
                     ]
                 ),
             ],
-            style={
-                "margin-left": "17%",
-                "margin-right": "2rem",
-                "padding": "2rem 1rem",
-            }
         )
     ]
 )
