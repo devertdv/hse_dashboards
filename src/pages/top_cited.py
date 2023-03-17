@@ -16,36 +16,12 @@ top_relevant_layout = html.Div(
     [
         html.Div(
             [
-                html.H2("Навигация", className="display-4"),
-                html.Hr(),
-                html.P(
-                    "Выберите интересующий раздел", className="lead"
-                ),
-                dbc.Nav(
+                html.Div(
                     [
-                        dbc.NavLink("Начальная страница", href="/", active="exact"),
-                        html.Hr(),
-                        dbc.NavLink("Общая информация по научной области", href="/general_info", active="exact"),
-                        html.Hr(),
-                        dbc.NavLink("Инфографика по наиболее цитируемым статьям", href="/top_cited", active="exact"),
                     ],
-                    vertical=True,
-                    pills=True,
+                    id="btn-header"
                 ),
-            ],
-            style={
-                "position": "fixed",
-                "top": 0,
-                "left": 0,
-                "bottom": 0,
-                "width": "15%",
-                "padding": "2rem 1rem",
-                "background-color": "#f8f9fa",
-            },
-        ),
 
-        html.Div(
-            [
                 html.Div(html.H5("Главная/ Инфографика по наиболее цитируемым статьям")),
                 html.Div(html.H2("Инфографика по наиболее цитируемым статьям")),
                 html.Div(
@@ -118,18 +94,30 @@ top_relevant_layout = html.Div(
                     id="big_table_container",
                     className="pretty_container",
                 )
-            ],
-            style={
-                "margin-left": "17%",
-                "margin-right": "2rem",
-                "padding": "2rem 1rem",
-            }
+            ]
         )
     ]
 )
 
 
 # callbacks
+
+
+# @app.callback(
+#     Output('btn-header', 'children'),
+#     Input('url', 'pathname'))
+# def create_header_button(pathname):
+#     id_btn_home = "button-header.current" if pathname == "/" else "button-header"
+#     id_btn_general_info = "button-header.current" if pathname == "/general_info" else "button-header"
+#     id_btn_top_cited = "button-header.current" if pathname == "/top_cited" else "button-header"
+
+#     return html.Div(
+#         [
+#             html.A(html.Button('Начальная страница', id=id_btn_home), href='/'),
+#             html.A(html.Button('Общая информация по научной области', id=id_btn_general_info), href='/general_info'),
+#             html.A(html.Button('Инфографика по наиболее цитируемым статьям', id=id_btn_top_cited), href='/top_cited')
+#         ]
+#     )
 
 
 @app.callback(
