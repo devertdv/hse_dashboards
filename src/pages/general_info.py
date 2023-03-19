@@ -6,7 +6,7 @@ from src.components.create_chart_datatable import *
 from src.components.create_dynamics_chart import *
 from src.components.create_left_column import *
 from src.components.create_right_column import *
-from src.components.updated_tables_chart import *
+from src.components.select_rows_big_table import *
 
 
 general_info_layout = html.Div(
@@ -36,29 +36,32 @@ general_info_layout = html.Div(
                                     id='clientside-graph-indicator'
                                 )
                             ],
-                            style={
-                                'width': '90%',
-                            }
                         ),
 
                         html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Authors rate table"),
-                                        create_chart_datatable(df_authors),
                                         html.Div(
                                             [
-                                                html.Button("Download Excel", id="btn-excel-author", className="btn-excel"),
-                                                dcc.Download(id="download-excel-author"),
-                                            ]
-                                        )
+                                                html.H3("Authors rate table"),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download Excel", id="btn-excel-author", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-author"),
+                                                    ]
+                                                )
+                                            ],
+                                            className="row-chart-datatable",
+                                        ),
+                                        create_chart_datatable(df_authors),
                                     ],
                                     id="cross-filter-options",
-                                    className="pretty_container",
+                                    className="pretty_container container_chart_datatable",
                                 ),
                                 html.Div(
                                     id='figure-author',
+                                    className="bar_chart"
                                 ),
                             ],
                             className="row flex-display",
@@ -68,20 +71,27 @@ general_info_layout = html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Organizations rate table"),
-                                        create_chart_datatable(df_organizations),
                                         html.Div(
                                             [
-                                                html.Button("Download Excel", id="btn-excel-organization", className="btn-excel"),
-                                                dcc.Download(id="download-excel-organization"),
-                                            ]
-                                        )
+                                                html.H3("Organizations rate table"),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download Excel", id="btn-excel-organization", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-organization"),
+                                                    ]
+                                                )
+                                            ],
+                                            className="row-chart-datatable",
+                                        ),
+                                        create_chart_datatable(df_organizations),
+                                        
                                     ],
                                     id="cross-filter-options",
-                                    className="pretty_container",
+                                    className="pretty_container container_chart_datatable",
                                 ),
                                 html.Div(
                                     id='figure-organization',
+                                    className="bar_chart"
                                 ),
                             ],
                             className="row flex-display",
@@ -90,20 +100,26 @@ general_info_layout = html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Fundings rate table"),
-                                        create_chart_datatable(df_fundings),
                                         html.Div(
                                             [
-                                                html.Button("Download Excel", id="btn-excel-funding", className="btn-excel"),
-                                                dcc.Download(id="download-excel-funding"),
-                                            ]
-                                        )
+                                                html.H3("Fundings rate table"),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download Excel", id="btn-excel-funding", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-funding"),
+                                                    ]
+                                                )
+                                            ],
+                                            className="row-chart-datatable",
+                                        ),
+                                        create_chart_datatable(df_fundings),
                                     ],
                                     id="cross-filter-options",
-                                    className="pretty_container",
+                                    className="pretty_container container_chart_datatable",
                                 ),
                                 html.Div(
                                     id='figure-funding',
+                                    className="bar_chart"
                                 ),
                             ],
                             className="row flex-display",
@@ -112,20 +128,26 @@ general_info_layout = html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Countries rate table"),
-                                        create_chart_datatable(df_countries),
                                         html.Div(
                                             [
-                                                html.Button("Download Excel", id="btn-excel-country", className="btn-excel"),
-                                                dcc.Download(id="download-excel-country"),
-                                            ]
-                                        )
+                                                html.H3("Countries rate table"),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download Excel", id="btn-excel-country", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-country"),
+                                                    ]
+                                                )
+                                            ],
+                                            className="row-chart-datatable",
+                                        ),
+                                        create_chart_datatable(df_countries),
                                     ],
                                     id="cross-filter-options",
-                                    className="pretty_container",
+                                    className="pretty_container container_chart_datatable",
                                 ),
                                 html.Div(
                                     id='figure-country',
+                                    className="bar_chart"
                                 ),
                             ],
                             className="row flex-display",
@@ -134,23 +156,29 @@ general_info_layout = html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Sources rate table"),
-                                        create_chart_datatable(df_sources),
                                         html.Div(
                                             [
-                                                html.Button("Download Excel", id="btn-excel-source", className="btn-excel"),
-                                                dcc.Download(id="download-excel-source"),
-                                            ]
-                                        )
+                                                html.H3("Sources rate table"),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download Excel", id="btn-excel-source", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-source"),
+                                                    ]
+                                                )
+                                            ],
+                                            className="row-chart-datatable",
+                                        ),
+                                        create_chart_datatable(df_sources),
                                     ],
                                     id="cross-filter-options",
-                                    className="pretty_container",
+                                    className="pretty_container container_chart_datatable",
                                 ),
                                 html.Div(
                                     id='figure-source',
+                                    className="bar_chart"
                                 ),
                             ],
-                            className="row flex-display",
+                            className="row",
                         ),
 
                         html.Div(
@@ -166,8 +194,6 @@ general_info_layout = html.Div(
             style={
                 "margin-left": "12%",
                 "margin-right": "12%",
-                "margin-right": "2rem",
-                "padding": "2rem 1rem",
             }
         ),
         create_right_column(),
@@ -185,35 +211,17 @@ general_info_layout = html.Div(
 def update_figure_authors(selected_rows, sort_by):
     return html.Div(
         [
-            html.Div(
-                [
-                    html.H3("Authors - Rate"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_authors, 1, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    ),
-                ],
-                className="pretty_single_container",
+            html.H3("Authors - Rate"),
+            dcc.Graph(
+                figure=create_bar_chart(df_authors, 1, selected_rows, sort_by),
+                style={
+                    'overflowY': 'scroll',
+                    'height': 350,
+                    'width': '100%'
+                }
             ),
-            html.Div(
-                [
-                    html.H3("Authors - Number of docs"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_authors, 2, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    )
-                ],
-                className="pretty_single_container",
-            )
-        ]
+        ],
+        className="pretty_container",
     )
 
 @app.callback(
@@ -223,35 +231,17 @@ def update_figure_authors(selected_rows, sort_by):
 def update_figure_organizations(selected_rows, sort_by):
     return html.Div(
         [
-            html.Div(
-                [
-                    html.H3("Organizations - Rate"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_organizations, 1, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    ),
-                ],
-                className="pretty_single_container",
+            html.H3("Organizations - Rate"),
+            dcc.Graph(
+                figure=create_bar_chart(df_organizations, 1, selected_rows, sort_by),
+                style={
+                    'overflowY': 'scroll',
+                    'height': 350,
+                    'width': '100%'
+                }
             ),
-            html.Div(
-                [
-                    html.H3("Organizations - Number of docs"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_organizations, 2, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    )
-                ],
-                className="pretty_single_container",
-            )
-        ]
+        ],
+        className="pretty_container",
     )
 
 @app.callback(
@@ -261,35 +251,17 @@ def update_figure_organizations(selected_rows, sort_by):
 def update_figure_fundings(selected_rows, sort_by):
     return html.Div(
         [
-            html.Div(
-                [
-                    html.H3("Fundings - Rate"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_fundings, 1, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    ),
-                ],
-                className="pretty_single_container",
+            html.H3("Fundings - Rate"),
+            dcc.Graph(
+                figure=create_bar_chart(df_fundings, 1, selected_rows, sort_by),
+                style={
+                    'overflowY': 'scroll',
+                    'height': 350,
+                    'width': '100%'
+                }
             ),
-            html.Div(
-                [
-                    html.H3("Fundings - Number of docs"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_fundings, 2, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    )
-                ],
-                className="pretty_single_container",
-            )
-        ]
+        ],
+        className="pretty_container",
     )
 
 @app.callback(
@@ -299,35 +271,17 @@ def update_figure_fundings(selected_rows, sort_by):
 def update_figure_countries(selected_rows, sort_by):
     return html.Div(
         [
-            html.Div(
-                [
-                    html.H3("Country - Rate"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_countries, 1, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    ),
-                ],
-                className="pretty_single_container",
+            html.H3("Country - Rate"),
+            dcc.Graph(
+                figure=create_bar_chart(df_countries, 1, selected_rows, sort_by),
+                style={
+                    'overflowY': 'scroll',
+                    'height': 350,
+                    'width': '100%'
+                }
             ),
-            html.Div(
-                [
-                    html.H3("Country - Number of docs"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_countries, 2, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    )
-                ],
-                className="pretty_single_container",
-            )
-        ]
+        ],
+        className="pretty_container",
     )
 
 
@@ -338,35 +292,17 @@ def update_figure_countries(selected_rows, sort_by):
 def update_figure_sources(selected_rows, sort_by):
     return html.Div(
         [
-            html.Div(
-                [
-                    html.H3("Sources - Rate"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_sources, 1, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    ),
-                ],
-                className="pretty_single_container",
+            html.H3("Sources - Rate"),
+            dcc.Graph(
+                figure=create_bar_chart(df_sources, 1, selected_rows, sort_by),
+                style={
+                    'overflowY': 'scroll',
+                    'height': 350,
+                    'width': '100%'
+                }
             ),
-            html.Div(
-                [
-                    html.H3("Sources - Number of docs"),
-                    dcc.Graph(
-                        figure=create_bar_chart(df_sources, 2, selected_rows, sort_by),
-                        style={
-                            'overflowY': 'scroll',
-                            'height': 350,
-                            'width': 650
-                        }
-                    )
-                ],
-                className="pretty_single_container",
-            )
-        ]
+        ],
+        className="pretty_container",
     )
 
 

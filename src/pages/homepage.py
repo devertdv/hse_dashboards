@@ -49,8 +49,6 @@ homepage_layout = html.Div(
             style={
                 "margin-left": "12%",
                 "margin-right": "12%",
-                "margin-right": "2rem",
-                "padding": "2rem 1rem",
             }
         ),
         create_right_column(),
@@ -70,7 +68,8 @@ def create_header_button(pathname):
         [
             html.A(html.Button('Начальная страница', className=id_btn_home), href='/'),
             html.A(html.Button('Общая информация по научной области', className=id_btn_general_info), href='/general_info'),
-            html.A(html.Button('Инфографика по наиболее цитируемым статьям', className=id_btn_top_cited), href='/top_cited')
+            html.A(html.Button('Инфографика по наиболее цитируемым статьям', className=id_btn_top_cited), href='/top_cited'),
+            html.Hr()
         ]
     )
 
@@ -81,9 +80,9 @@ def create_header_button(pathname):
 def update_right_column(pathname):
     height = '100%'
     if pathname == "/general_info":
-        height = 'calc(350px * 15 + 120px)'
+        height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 90px)'
+        height = 'calc(350px * 9 + 20px)'
 
     return {
         'position': 'absolute',
@@ -103,9 +102,9 @@ def update_right_column(pathname):
 def update_right_column(pathname):
     height = '100%'
     if pathname == "/general_info":
-        height = 'calc(350px * 15 + 120px)'
+        height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 90px)'
+        height = 'calc(350px * 9 + 20px)'
 
     return {
         'position': 'absolute',

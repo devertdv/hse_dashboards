@@ -19,7 +19,6 @@ def create_dynamics_chart(df):
         ),
         style={
             'height': 350,
-            'width': '90%',
         },
         id='my-graph-example',
     )

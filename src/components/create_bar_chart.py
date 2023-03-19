@@ -5,7 +5,7 @@ from src.components.read_files import *
 
 def create_bar_chart(df, column, selected_rows=[], sort_by=[]):
     dff = df.iloc[selected_rows]
-    dff[dff.columns[0]] = dff[dff.columns[0]].apply(lambda x: "<br>".join(tw.wrap(x, width=40)))
+    dff[dff.columns[0]] = dff[dff.columns[0]].apply(lambda x: "<br>".join(tw.wrap(x, width=20)))
 
     if sort_by:
         if sort_by[0][list(sort_by[0].keys())[0]] == dff.columns[0]:
@@ -45,8 +45,8 @@ def create_bar_chart(df, column, selected_rows=[], sort_by=[]):
         xaxis_title=None,
         yaxis_title=None,
         template="plotly_white",
-        height=dff.shape[0]*50,
-        width=600,
+        height=dff.shape[0]*70,
+        width=730,
         margin=dict(l=20, r=20, t=20, b=20),
     )
 

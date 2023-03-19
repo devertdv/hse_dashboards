@@ -24,12 +24,10 @@ def create_chart_datatable(df):
                 },
 
                 style_table={
-                    'height': 800,
+                    'height': 350,
                 },
                 style_cell={
-                    'minWidth': 200,
                     'width': 200,
-                    'maxWidth': 200,
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                 },

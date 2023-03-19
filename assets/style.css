@@ -2,6 +2,10 @@
     display: flex;
 }
 
+.flex-display {
+    display: flex;
+}
+
 .box {
     border-radius: 20px;
     background-color: #F9F9F8;
@@ -34,23 +38,18 @@
 .pretty_container {
     border-radius: 5px;
     background-color: #f9f9f9;
-    margin: 10px 10px 20px 10px;
+    margin: 20px 10px 10px 10px;
     padding: 15px;
     position: relative;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
-.pretty_single_container {
-    border-radius: 5px;
-    background-color: #f9f9f9;
-    margin: 10px 10px 20px 10px;
-    padding: 15px;
-    position: relative;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
+.container_chart_datatable {
+    width: 80%
 }
 
-.flex-display {
-    display: flex;
+.bar_chart {
+    width: 120%
 }
 
 .btn-excel {
@@ -61,6 +60,7 @@
 }
 
 .button-header {
+    border-radius: 5px;
     background-color: white;
     border: none;
     color: #192f67;
@@ -73,6 +73,7 @@
 }
 
 .button-header-current {
+    border-radius: 5px;
     background-color: #192f67;
     border: none;
     color: white;
@@ -84,11 +85,33 @@
     font-size: 16px;
 }
 
+.btn-excel {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #192f67;
+    color: #192f67;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-excel:hover {
+    background-color: #192f67;
+    color: white;
+    cursor:pointer;
+}
+
 .button-header:hover,
 .button-header-current:hover {
     background-color: #192f67;
     color: white;
     cursor:pointer;
+}
+
+.row-chart-datatable {
+    display: flex;
+    justify-content: space-between;
 }
 
 h2, h3 {
