@@ -1,17 +1,16 @@
 import pandas as pd
 from dash import html, dcc
 from dash.dependencies import Input, Output, State
-import dash_bootstrap_components as dbc
 
 from app import app
 from src.components.create_big_table import *
 from src.components.create_pie_chart import *
-from src.components.select_rows_big_table import *
 from src.components.create_chart_datatable import *
 from src.components.create_left_column import *
 from src.components.create_right_column import *
 from src.components.create_treemap_chart import *
-from src.components.updated_tables_chart import *
+from src.components.read_files import *
+from src.components.select_rows_big_table import *
 
 
 top_relevant_layout = html.Div(
@@ -41,45 +40,52 @@ top_relevant_layout = html.Div(
                                     id='clientside-graph-indicator'
                                 )
                             ],
-                            style={
-                                'width': '85%',
-                            }
-                        ),
-
-                        html.Div(
-                            html.Div(
-                                [
-                                    html.H3("Word count treemap"),
-                                    dcc.Graph(
-                                        figure=create_treemap_chart(df_treemap_table),
-                                        id="treemap-chart",
-                                        style={
-                                            'height': 500,
-                                            'width': '85%',
-                                        },
-                                    )
-                                ],
-                                id="treemap_container",
-                                className="pretty_container",
-                            ),
                         ),
 
                         html.Div(
                             [
-                                html.H3("Top cited table"),
+                                html.H3("Word count treemap"),
+                                dcc.Graph(
+                                    figure=create_treemap_chart(df_treemap_table),
+                                    id="treemap-chart",
+                                    style={
+                                        'height': 500,
+                                    },
+                                )
+                            ],
+                            id="treemap_container",
+                            className="pretty_container",
+                        ),
+
+                        html.Div(
+                            [
+                                html.Div(
+                                    [
+                                        html.H3("Top cited table"),
+                                        html.Div(
+                                            [
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download this table", id="btn-excel-big-table", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-big-table"),
+                                                    ]
+                                                ),
+                                                html.Div(
+                                                    [
+                                                        html.Button("Download full table", id="btn-excel-full-big-table", className="btn-excel"),
+                                                        dcc.Download(id="download-excel-full-big-table"),
+                                                    ]
+                                                ),
+                                            ],
+                                            className="flex-display"
+                                        )
+                                    ],
+                                    className="row-chart-datatable"
+                                ),
                                 dcc.Store(id="selected-rows-big-table"),
                                 html.Div(
                                     id="big-table",
-                                    style={
-                                        'width': '85%',
-                                    }
                                 ),
-                                html.Div(
-                                    [
-                                        html.Button("Download Excel", id="btn-excel-big-table", className="btn-excel"),
-                                        dcc.Download(id="download-excel-big-table"),
-                                    ]
-                                )
                             ],
                             id="big_table_container",
                             className="pretty_container",
@@ -92,9 +98,6 @@ top_relevant_layout = html.Div(
                             ],
                             id="big_table_container",
                             className="pretty_container",
-                            style={
-                                'width': '85%',
-                            }
                         ),
 
                         html.Div(
@@ -104,9 +107,6 @@ top_relevant_layout = html.Div(
                             ],
                             id="big_table_container",
                             className="pretty_container",
-                            style={
-                                'width': '85%',
-                            }
                         ),
 
                         html.Div(
@@ -116,9 +116,6 @@ top_relevant_layout = html.Div(
                             ],
                             id="big_table_container",
                             className="pretty_container",
-                            style={
-                                'width': '85%',
-                            }
                         )
                     ]
                 )
@@ -126,8 +123,6 @@ top_relevant_layout = html.Div(
             style={
                 "margin-left": "12%",
                 "margin-right": "12%",
-                "margin-right": "2rem",
-                "padding": "2rem 1rem",
             }
         ),
         create_right_column(),
@@ -136,23 +131,6 @@ top_relevant_layout = html.Div(
 
 
 # callbacks
-
-
-# @app.callback(
-#     Output('btn-header', 'children'),
-#     Input('url', 'pathname'))
-# def create_header_button(pathname):
-#     id_btn_home = "button-header.current" if pathname == "/" else "button-header"
-#     id_btn_general_info = "button-header.current" if pathname == "/general_info" else "button-header"
-#     id_btn_top_cited = "button-header.current" if pathname == "/top_cited" else "button-header"
-
-#     return html.Div(
-#         [
-#             html.A(html.Button('Начальная страница', id=id_btn_home), href='/'),
-#             html.A(html.Button('Общая информация по научной области', id=id_btn_general_info), href='/general_info'),
-#             html.A(html.Button('Инфографика по наиболее цитируемым статьям', id=id_btn_top_cited), href='/top_cited')
-#         ]
-#     )
 
 
 @app.callback(
@@ -187,6 +165,15 @@ def download_big_table(n_clicks, data):
     data = df[0].tolist()
     dff = df_big_table_chart.iloc[data]
     return dcc.send_data_frame(dff.to_excel, "top_2000_cited_docs.xlsx")
+
+
+@app.callback(
+    Output("download-excel-full-big-table", "data"),
+    Input("btn-excel-full-big-table", "n_clicks"),
+    prevent_initial_call=True,
+)
+def download_big_table(n_clicks):
+    return dcc.send_data_frame(df_big_table.to_excel, "full_top_2000_cited_docs.xlsx")
 
 
 @app.callback(
