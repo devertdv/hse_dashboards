@@ -6,6 +6,10 @@
     display: flex;
 }
 
+#chapter-title {
+    text-decoration: underline;
+}
+
 .box {
     border-radius: 20px;
     background-color: #F9F9F8;
@@ -59,17 +63,20 @@
     flex-direction: column;
 }
 
+a {
+    text-decoration: none;
+}
+
 .button-header {
     border-radius: 5px;
     background-color: white;
     border: none;
     color: #192f67;
-    margin: 0 15px 0 15px;
-    padding: 15px 32px;
+    margin: 0 10px 0 10px;
+    padding: 15px 15px;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
 }
 
 .button-header-current {
@@ -77,12 +84,23 @@
     background-color: #192f67;
     border: none;
     color: white;
-    margin: 0 15px 0 15px;
-    padding: 15px 32px;
+    margin: 0 10px 0 10px;
+    padding: 15px 15px;
+    font-size: 16px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
+}
+
+.button-header:hover,
+.button-header-current:hover {
+    background-color: #192f67;
+    color: white;
+    cursor:pointer;
+}
+
+#header-btn-flex {
+    display: flex;
+    justify-content: space-between;
 }
 
 .btn-excel {
@@ -97,13 +115,6 @@
 }
 
 .btn-excel:hover {
-    background-color: #192f67;
-    color: white;
-    cursor:pointer;
-}
-
-.button-header:hover,
-.button-header-current:hover {
     background-color: #192f67;
     color: white;
     cursor:pointer;
