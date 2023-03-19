@@ -8,94 +8,129 @@ from src.components.create_big_table import *
 from src.components.create_pie_chart import *
 from src.components.select_rows_big_table import *
 from src.components.create_chart_datatable import *
+from src.components.create_left_column import *
+from src.components.create_right_column import *
 from src.components.create_treemap_chart import *
 from src.components.updated_tables_chart import *
 
 
 top_relevant_layout = html.Div(
     [
+        create_left_column(),
         html.Div(
             [
                 html.Div(
                     [
-                    ],
-                    id="btn-header"
-                ),
-
-                html.Div(html.H5("Главная/ Инфографика по наиболее цитируемым статьям")),
-                html.Div(html.H2("Инфографика по наиболее цитируемым статьям")),
-                html.Div(
-                    [
-                        'Choose Field',
-                        dcc.Dropdown(
-                            {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
-                            'psy',
-                            id='clientside-graph-indicator'
-                        )
+                        html.Div(
+                            [
+                            ],
+                            id="btn-header"
+                        ),
                     ]
                 ),
 
                 html.Div(
-                    html.Div(
-                        [
-                            html.H3("Word count treemap"),
-                            dcc.Graph(
-                                figure=create_treemap_chart(df_treemap_table),
-                                id="treemap-chart",
-                                style={'height': 500},
-                            )
-                        ],
-                        id="treemap_container",
-                        className="pretty_container",
-                    ),
-                ),
-
-                html.Div(
                     [
-                        html.H3("Top cited table"),
-                        dcc.Store(id="selected-rows-big-table"),
-                        html.Div(
-                            id="big-table",
-                        ),
+                        html.Div(html.H2("Инфографика по наиболее цитируемым статьям")),
                         html.Div(
                             [
-                                html.Button("Download Excel", id="btn-excel-big-table", className="btn-excel"),
-                                dcc.Download(id="download-excel-big-table"),
-                            ]
+                                'Choose Field',
+                                dcc.Dropdown(
+                                    {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
+                                    'psy',
+                                    id='clientside-graph-indicator'
+                                )
+                            ],
+                            style={
+                                'width': '85%',
+                            }
+                        ),
+
+                        html.Div(
+                            html.Div(
+                                [
+                                    html.H3("Word count treemap"),
+                                    dcc.Graph(
+                                        figure=create_treemap_chart(df_treemap_table),
+                                        id="treemap-chart",
+                                        style={
+                                            'height': 500,
+                                            'width': '85%',
+                                        },
+                                    )
+                                ],
+                                id="treemap_container",
+                                className="pretty_container",
+                            ),
+                        ),
+
+                        html.Div(
+                            [
+                                html.H3("Top cited table"),
+                                dcc.Store(id="selected-rows-big-table"),
+                                html.Div(
+                                    id="big-table",
+                                    style={
+                                        'width': '85%',
+                                    }
+                                ),
+                                html.Div(
+                                    [
+                                        html.Button("Download Excel", id="btn-excel-big-table", className="btn-excel"),
+                                        dcc.Download(id="download-excel-big-table"),
+                                    ]
+                                )
+                            ],
+                            id="big_table_container",
+                            className="pretty_container",
+                        ),
+
+                        html.Div(
+                            [
+                                html.H3("Document Type"),
+                                dcc.Graph(id='circle_doctype')
+                            ],
+                            id="big_table_container",
+                            className="pretty_container",
+                            style={
+                                'width': '85%',
+                            }
+                        ),
+
+                        html.Div(
+                            [
+                                html.H3("Source Title"),
+                                dcc.Graph(id='circle_source_title')
+                            ],
+                            id="big_table_container",
+                            className="pretty_container",
+                            style={
+                                'width': '85%',
+                            }
+                        ),
+
+                        html.Div(
+                            [
+                                html.H3("Publisher"),
+                                dcc.Graph(id='circle_pub')
+                            ],
+                            id="big_table_container",
+                            className="pretty_container",
+                            style={
+                                'width': '85%',
+                            }
                         )
-                    ],
-                    id="big_table_container",
-                    className="pretty_container",
-                ),
-
-                html.Div(
-                    [
-                        html.H3("Document Type"),
-                        dcc.Graph(id='circle_doctype')
-                    ],
-                    id="big_table_container",
-                    className="pretty_container",
-                ),
-
-                html.Div(
-                    [
-                        html.H3("Source Title"),
-                        dcc.Graph(id='circle_source_title')
-                    ],
-                    id="big_table_container",
-                    className="pretty_container",
-                ),
-
-                html.Div(
-                    [
-                        html.H3("Publisher"),
-                        dcc.Graph(id='circle_pub')
-                    ],
-                    id="big_table_container",
-                    className="pretty_container",
+                    ]
                 )
-            ]
-        )
+            ],
+            style={
+                "margin-left": "12%",
+                "margin-right": "12%",
+                "margin-right": "2rem",
+                "padding": "2rem 1rem",
+            }
+        ),
+        create_right_column(),
     ]
 )
 

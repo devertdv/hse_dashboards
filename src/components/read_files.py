@@ -25,8 +25,8 @@ df_sources.columns = ["Source", "Rate"]
 df_sources = df_sources[df_sources.Source != "Undefined"]
 df_sources.sort_values("Rate", ascending=True)
 
-df_dinamic = pd.read_csv('data/publications_dinamic.csv', header=None, sep=",")
-df_dinamic.columns = ["Year", "Number"]
+df_dynamics = pd.read_csv('data/publications_dinamic.csv', header=None, sep=",")
+df_dynamics.columns = ["Year", "Number"]
 
 df_big_table = pd.read_csv('data/top-2000_pub_by citation.csv', sep=',')
 df_big_table["Author Keywords"] = df_big_table["Author Keywords"].fillna('')
