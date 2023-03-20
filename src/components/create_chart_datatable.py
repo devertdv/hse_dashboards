@@ -10,6 +10,7 @@ def create_chart_datatable(df):
                 columns=[{'id': c, 'name': c} for c in df.columns],
 
                 fixed_rows={'headers': True},
+                filter_action="native",
                 sort_action="native",
                 sort_mode="single",
                 sort_by=[],

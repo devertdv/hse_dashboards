@@ -3,7 +3,7 @@ import textwrap as tw
 from src.components.read_files import *
 
 
-def create_bar_chart(df, column, selected_rows=[], sort_by=[]):
+def create_bar_chart(df, selected_rows=[], sort_by=[]):
     dff = df.iloc[selected_rows]
     dff[dff.columns[0]] = dff[dff.columns[0]].apply(lambda x: "<br>".join(tw.wrap(x, width=20)))
 
@@ -29,8 +29,8 @@ def create_bar_chart(df, column, selected_rows=[], sort_by=[]):
     fig = go.Figure(
         data=[go.Bar(
             y=dff[dff.columns[0]],
-            x=dff[dff.columns[column]],
-            text=dff[dff.columns[column]],
+            x=dff[dff.columns[1]],
+            text=dff[dff.columns[1]],
             orientation='h'
         )],
         layout={

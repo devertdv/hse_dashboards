@@ -213,7 +213,7 @@ def update_figure_authors(selected_rows, sort_by):
         [
             html.H3("Authors - Rate"),
             dcc.Graph(
-                figure=create_bar_chart(df_authors, 1, selected_rows, sort_by),
+                figure=create_bar_chart(df_authors, selected_rows, sort_by),
                 style={
                     'overflowY': 'scroll',
                     'height': 350,
@@ -233,7 +233,7 @@ def update_figure_organizations(selected_rows, sort_by):
         [
             html.H3("Organizations - Rate"),
             dcc.Graph(
-                figure=create_bar_chart(df_organizations, 1, selected_rows, sort_by),
+                figure=create_bar_chart(df_organizations, selected_rows, sort_by),
                 style={
                     'overflowY': 'scroll',
                     'height': 350,
@@ -253,7 +253,7 @@ def update_figure_fundings(selected_rows, sort_by):
         [
             html.H3("Fundings - Rate"),
             dcc.Graph(
-                figure=create_bar_chart(df_fundings, 1, selected_rows, sort_by),
+                figure=create_bar_chart(df_fundings, selected_rows, sort_by),
                 style={
                     'overflowY': 'scroll',
                     'height': 350,
@@ -273,7 +273,7 @@ def update_figure_countries(selected_rows, sort_by):
         [
             html.H3("Country - Rate"),
             dcc.Graph(
-                figure=create_bar_chart(df_countries, 1, selected_rows, sort_by),
+                figure=create_bar_chart(df_countries, selected_rows, sort_by),
                 style={
                     'overflowY': 'scroll',
                     'height': 350,
@@ -294,7 +294,7 @@ def update_figure_sources(selected_rows, sort_by):
         [
             html.H3("Sources - Rate"),
             dcc.Graph(
-                figure=create_bar_chart(df_sources, 1, selected_rows, sort_by),
+                figure=create_bar_chart(df_sources, selected_rows, sort_by),
                 style={
                     'overflowY': 'scroll',
                     'height': 350,
