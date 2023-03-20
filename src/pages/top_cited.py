@@ -33,7 +33,7 @@ top_relevant_layout = html.Div(
                         html.Div(html.H2("Инфографика по наиболее цитируемым статьям")),
                         html.Div(
                             [
-                                'Choose Field',
+                                html.P('Выберите научную область'),
                                 dcc.Dropdown(
                                     {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
                                     'psy',
@@ -44,7 +44,7 @@ top_relevant_layout = html.Div(
 
                         html.Div(
                             [
-                                html.H3("Word count treemap"),
+                                html.H3("Карта ключевых слов"),
                                 dcc.Graph(
                                     figure=create_treemap_chart(df_treemap_table),
                                     id="treemap-chart",
@@ -61,18 +61,18 @@ top_relevant_layout = html.Div(
                             [
                                 html.Div(
                                     [
-                                        html.H3("Top cited table"),
+                                        html.H3("Таблица наиболее цитируемых источников"),
                                         html.Div(
                                             [
                                                 html.Div(
                                                     [
-                                                        html.Button("Download this table", id="btn-excel-big-table", className="btn-excel"),
+                                                        html.Button("Скачать краткую версию", id="btn-excel-big-table", className="btn-excel"),
                                                         dcc.Download(id="download-excel-big-table"),
                                                     ]
                                                 ),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download full table", id="btn-excel-full-big-table", className="btn-excel"),
+                                                        html.Button("Скачать полную версию", id="btn-excel-full-big-table", className="btn-excel"),
                                                         dcc.Download(id="download-excel-full-big-table"),
                                                     ]
                                                 ),
@@ -93,7 +93,7 @@ top_relevant_layout = html.Div(
 
                         html.Div(
                             [
-                                html.H3("Document Type"),
+                                html.H3("Распределение по типам публикации"),
                                 dcc.Graph(id='circle_doctype')
                             ],
                             id="big_table_container",
@@ -102,7 +102,7 @@ top_relevant_layout = html.Div(
 
                         html.Div(
                             [
-                                html.H3("Source Title"),
+                                html.H3("Распределение по журналам"),
                                 dcc.Graph(id='circle_source_title')
                             ],
                             id="big_table_container",
@@ -111,7 +111,7 @@ top_relevant_layout = html.Div(
 
                         html.Div(
                             [
-                                html.H3("Publisher"),
+                                html.H3("Распределение по публикующим ресурсам"),
                                 dcc.Graph(id='circle_pub')
                             ],
                             id="big_table_container",

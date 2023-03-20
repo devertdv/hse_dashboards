@@ -15,8 +15,8 @@ def create_treemap_chart(df):
     dv = dict_df["count"]
     dv.insert(0, 0)
     dk = dict_df["keywords"]
-    dk.insert(0, "keywords")
-    par = ["keywords" for _ in range(100)]
+    dk.insert(0, "ключевые слова")
+    par = ["ключевые слова" for _ in range(100)]
     par.insert(0, "")
     num_displayed_keywords = 20
 

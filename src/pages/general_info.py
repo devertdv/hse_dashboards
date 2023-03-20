@@ -29,7 +29,7 @@ general_info_layout = html.Div(
                         html.Div(html.H2("Общая информация по научной области")),
                         html.Div(
                             [
-                                'Field',
+                                html.P('Выберите научную область'),
                                 dcc.Dropdown(
                                     {'psy': 'Psychology', 'soft': 'Software', 'surg': 'Surgery'},
                                     'psy',
@@ -44,10 +44,10 @@ general_info_layout = html.Div(
                                     [
                                         html.Div(
                                             [
-                                                html.H3("Authors rate table"),
+                                                html.H3("Таблица рейтинга авторов"),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download Excel", id="btn-excel-author", className="btn-excel"),
+                                                        html.Button("Скачать Excel", id="btn-excel-author", className="btn-excel"),
                                                         dcc.Download(id="download-excel-author"),
                                                     ]
                                                 )
@@ -73,10 +73,10 @@ general_info_layout = html.Div(
                                     [
                                         html.Div(
                                             [
-                                                html.H3("Organizations rate table"),
+                                                html.H3("Таблица рейтинга публикаторов"),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download Excel", id="btn-excel-organization", className="btn-excel"),
+                                                        html.Button("Скачать Excel", id="btn-excel-organization", className="btn-excel"),
                                                         dcc.Download(id="download-excel-organization"),
                                                     ]
                                                 )
@@ -102,10 +102,10 @@ general_info_layout = html.Div(
                                     [
                                         html.Div(
                                             [
-                                                html.H3("Fundings rate table"),
+                                                html.H3("Таблица рейтинга спонсоров"),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download Excel", id="btn-excel-funding", className="btn-excel"),
+                                                        html.Button("Скачать Excel", id="btn-excel-funding", className="btn-excel"),
                                                         dcc.Download(id="download-excel-funding"),
                                                     ]
                                                 )
@@ -130,10 +130,10 @@ general_info_layout = html.Div(
                                     [
                                         html.Div(
                                             [
-                                                html.H3("Countries rate table"),
+                                                html.H3("Таблица рейтинга стран"),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download Excel", id="btn-excel-country", className="btn-excel"),
+                                                        html.Button("Скачать Excel", id="btn-excel-country", className="btn-excel"),
                                                         dcc.Download(id="download-excel-country"),
                                                     ]
                                                 )
@@ -158,10 +158,10 @@ general_info_layout = html.Div(
                                     [
                                         html.Div(
                                             [
-                                                html.H3("Sources rate table"),
+                                                html.H3("Таблица рейтинга журналов"),
                                                 html.Div(
                                                     [
-                                                        html.Button("Download Excel", id="btn-excel-source", className="btn-excel"),
+                                                        html.Button("Скачать Excel", id="btn-excel-source", className="btn-excel"),
                                                         dcc.Download(id="download-excel-source"),
                                                     ]
                                                 )
@@ -183,7 +183,7 @@ general_info_layout = html.Div(
 
                         html.Div(
                             [
-                                html.H3("Publications dynamic"),
+                                html.H3("Динамика публикаций"),
                                 create_dynamics_chart(df_dynamics),
                             ],
                             className="pretty_container",
@@ -211,7 +211,7 @@ general_info_layout = html.Div(
 def update_figure_authors(selected_rows, sort_by):
     return html.Div(
         [
-            html.H3("Authors - Rate"),
+            html.H3("График рейтинга авторов"),
             dcc.Graph(
                 figure=create_bar_chart(df_authors, selected_rows, sort_by),
                 style={
@@ -231,7 +231,7 @@ def update_figure_authors(selected_rows, sort_by):
 def update_figure_organizations(selected_rows, sort_by):
     return html.Div(
         [
-            html.H3("Organizations - Rate"),
+            html.H3("График рейтинга публикаторов"),
             dcc.Graph(
                 figure=create_bar_chart(df_organizations, selected_rows, sort_by),
                 style={
@@ -251,7 +251,7 @@ def update_figure_organizations(selected_rows, sort_by):
 def update_figure_fundings(selected_rows, sort_by):
     return html.Div(
         [
-            html.H3("Fundings - Rate"),
+            html.H3("График рейтинга спонсоров"),
             dcc.Graph(
                 figure=create_bar_chart(df_fundings, selected_rows, sort_by),
                 style={
@@ -271,7 +271,7 @@ def update_figure_fundings(selected_rows, sort_by):
 def update_figure_countries(selected_rows, sort_by):
     return html.Div(
         [
-            html.H3("Country - Rate"),
+            html.H3("График рейтинга стран"),
             dcc.Graph(
                 figure=create_bar_chart(df_countries, selected_rows, sort_by),
                 style={
@@ -292,7 +292,7 @@ def update_figure_countries(selected_rows, sort_by):
 def update_figure_sources(selected_rows, sort_by):
     return html.Div(
         [
-            html.H3("Sources - Rate"),
+            html.H3("График рейтинга журналов"),
             dcc.Graph(
                 figure=create_bar_chart(df_sources, selected_rows, sort_by),
                 style={
