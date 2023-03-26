@@ -10,11 +10,9 @@ def create_chart_datatable(df):
                 columns=[{'id': c, 'name': c} for c in df.columns],
 
                 fixed_rows={'headers': True},
-                filter_action="native",
                 sort_action="native",
                 sort_mode="single",
                 sort_by=[],
-                editable=True,
                 row_selectable='multi',
                 selected_rows=[i for i in range(df.shape[0])],
 
@@ -29,6 +27,7 @@ def create_chart_datatable(df):
                 },
                 style_cell={
                     'width': 200,
+                    'maxwidth': 200,
                     'overflow': 'hidden',
                     'textOverflow': 'ellipsis',
                 },
