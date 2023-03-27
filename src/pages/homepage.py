@@ -148,7 +148,7 @@ def update_left_column(pathname):
     if pathname == "/general_info":
         height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 55px)'
+        height = 'calc(350px * 9 + 20px)'
 
     return {
         'position': 'absolute',
@@ -170,7 +170,7 @@ def update_right_column(pathname):
     if pathname == "/general_info":
         height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 55px)'
+        height = 'calc(350px * 9 + 20px)'
 
     return {
         'position': 'absolute',
