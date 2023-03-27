@@ -29,7 +29,7 @@ homepage_layout = html.Div(
                                         панелью в верхней части страницы."),
                             ],
                             style={
-                                'text-align': 'center'
+                                'text-align': 'justify'
                             }
                         ),
                         dbc.Nav(
@@ -51,9 +51,9 @@ homepage_layout = html.Div(
                                         html.P("Доступны:"),
                                         html.Ul(
                                             [
-                                                html.Li("выгрузка графиков в формате png;"),
+                                                html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
                                                 html.Li("сортировка каждого из столбцов таблиц и поиск по ним;"),
-                                                html.Li("выгрузка таблиц."),
+                                                html.Li("выгрузка таблиц (доступна при нажатии соответствующей кнопки над таблицей)."),
                                             ]
                                         ),
                                     ],
@@ -68,7 +68,7 @@ homepage_layout = html.Div(
                                     [
                                         html.H3("Инфографика по наиболее цитируемым статьям", id="chapter-title"),
                                         html.P("В данном разделе представлены краткая версия таблицы с топ-2000 наиболее цитируемых статей и список \
-                                                ключевых слов."),
+                                                ключевых слов с количеством документов, которые содержат данные ключевые слова."),
                                         html.P("Также представлены круговые диаграммы по количеству следующих показателей:"),
                                         html.Ul(
                                             [
@@ -80,11 +80,11 @@ homepage_layout = html.Div(
                                         html.P("Доступны:"),
                                         html.Ul(
                                             [
-                                                html.Li("выгрузка графиков в формате png;"),
+                                                html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
                                                 html.Li("фильтрации данных по выбранным ключевым словам;"),
                                                 html.Li("сортировка каждого из столбцов и поиск по ним;"),
-                                                html.Li("выгрузка краткой версии таблицы;"),
-                                                html.Li("выгрузка полной версии таблицы (отличается от краткой наличием дополнительной информации, например, ISSN)."),
+                                                html.Li("выгрузка краткой версии таблицы (доступна при нажатии соответствующей кнопки над таблицей);"),
+                                                html.Li("выгрузка полной версии таблицы (доступна при нажатии соответствующей кнопки над таблицей. Полная версия отличается от краткой наличием дополнительной информации, например, ISSN)."),
                                             ]
                                         ),
                                     ],
@@ -100,8 +100,6 @@ homepage_layout = html.Div(
                         )
                     ],
                     style={
-                        # "margin": "auto",
-                        # "width": "50%",
                         "padding": "10px",
                     }
                 ),
@@ -145,12 +143,12 @@ def create_header_button(pathname):
 @app.callback(
     Output('left-column', 'style'),
     Input('url', 'pathname'))
-def update_right_column(pathname):
+def update_left_column(pathname):
     height = '100%'
     if pathname == "/general_info":
         height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 20px)'
+        height = 'calc(350px * 9 + 55px)'
 
     return {
         'position': 'absolute',
@@ -172,7 +170,7 @@ def update_right_column(pathname):
     if pathname == "/general_info":
         height = 'calc(350px * 9 - 110px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 20px)'
+        height = 'calc(350px * 9 + 55px)'
 
     return {
         'position': 'absolute',
