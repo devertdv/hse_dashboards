@@ -45,7 +45,7 @@ def create_bar_chart(df, selected_rows=[], sort_by=[]):
         yaxis_title=None,
         template="plotly_white",
         height=dff.shape[0]*70,
-        width=730,
+        width=670,
         margin=dict(l=20, r=20, t=20, b=20),
     )
 
