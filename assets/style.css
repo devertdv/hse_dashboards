@@ -2,51 +2,92 @@
     display: flex;
 }
 
-.box {
-    border-radius: 20px;
-    background-color: #F9F9F8;
-    margin: 10px;
-    padding: 25px;
-    box-shadow: 2px 2px 2px lightgrey;
-}
-
-.box_comment {
-    border-radius: 20px;
-    background-color: #d4f5c29a;
-    margin: 10px;
-    padding: 10px;
-    box-shadow: 2px 2px 2px lightgrey;
-    font-size: small;
-    text-align: center;
-    font-family: system-ui;
-}
-
-.box_emissions{
-    border-radius: 20px;
-    background-color: #e9a8538e;    
-    margin: 2px;
-    box-shadow: 2px 2px 2px lightgrey;
-    justify-content: center;
-    width: 50%;
-    text-align: center;
-}
-
 .pretty_container {
     border-radius: 5px;
     background-color: #f9f9f9;
-    margin: 10px;
+    margin: 20px 10px 10px 10px;
     padding: 15px;
     position: relative;
-    box-shadow: 2px 2px 2px lightgrey;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.4);
 }
 
-.flex-display {
-    display: flex;
+.container_chart_datatable {
+    width: 40%
 }
 
-.btn-csv {
+.bar_chart {
+    width: 60%;
+}
+
+.btn-excel {
     margin: 20px 20px 0 0;
     position: relative;
     display: flex;
     flex-direction: column;
+}
+
+a {
+    text-decoration: none;
+}
+
+.button-header {
+    border-radius: 5px;
+    background-color: white;
+    border: none;
+    color: #192f67;
+    margin: 0 10px 0 10px;
+    padding: 15px 15px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-header-current {
+    border-radius: 5px;
+    background-color: #192f67;
+    border: none;
+    color: white;
+    margin: 0 10px 0 10px;
+    padding: 15px 15px;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+}
+
+.button-header:hover,
+.button-header-current:hover {
+    background-color: #192f67;
+    color: white;
+    cursor:pointer;
+}
+
+#header-btn-flex {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-excel {
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #192f67;
+    color: #192f67;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-excel:hover {
+    background-color: #192f67;
+    color: white;
+    cursor:pointer;
+}
+
+.row-chart-datatable {
+    display: flex;
+    justify-content: space-between;
+}
+
+h2, h3 {
+    color: #192f67
 }
