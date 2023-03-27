@@ -78,7 +78,7 @@ top_relevant_layout = html.Div(
                                                     ]
                                                 ),
                                             ],
-                                            className="flex-display"
+                                            className="row"
                                         )
                                     ],
                                     className="row-chart-datatable"
