@@ -51,8 +51,8 @@ homepage_layout = html.Div(
                                         html.P("Доступны:"),
                                         html.Ul(
                                             [
-                                                html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
-                                                html.Li("сортировка каждого из столбцов таблиц и поиск по ним;"),
+                                                # html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
+                                                html.Li("сортировка каждого из столбцов таблиц;"),
                                                 html.Li("выгрузка таблиц (доступна при нажатии соответствующей кнопки над таблицей)."),
                                             ]
                                         ),
@@ -80,7 +80,7 @@ homepage_layout = html.Div(
                                         html.P("Доступны:"),
                                         html.Ul(
                                             [
-                                                html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
+                                                # html.Li("выгрузка графиков в формате png (доступна справа сверху при наведении курсора на график);"),
                                                 html.Li("фильтрации данных по выбранным ключевым словам;"),
                                                 html.Li("сортировка каждого из столбцов и поиск по ним;"),
                                                 html.Li("выгрузка краткой версии таблицы (доступна при нажатии соответствующей кнопки над таблицей);"),
@@ -144,11 +144,11 @@ def create_header_button(pathname):
     Output('left-column', 'style'),
     Input('url', 'pathname'))
 def update_left_column(pathname):
-    height = '100%'
+    height = 'calc(350px * 3 - 50px)'
     if pathname == "/general_info":
-        height = 'calc(350px * 9 - 110px)'
+        height = 'calc(350px * 9 - 80px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 20px)'
+        height = 'calc(350px * 9 + 40px)'
 
     return {
         'position': 'absolute',
@@ -166,11 +166,11 @@ def update_left_column(pathname):
     Output('right-column', 'style'),
     Input('url', 'pathname'))
 def update_right_column(pathname):
-    height = '100%'
+    height = 'calc(350px * 3 - 50px)'
     if pathname == "/general_info":
-        height = 'calc(350px * 9 - 110px)'
+        height = 'calc(350px * 9 - 80px)'
     elif pathname == "/top_cited":
-        height = 'calc(350px * 9 + 20px)'
+        height = 'calc(350px * 9 + 40px)'
 
     return {
         'position': 'absolute',

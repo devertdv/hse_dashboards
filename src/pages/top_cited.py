@@ -38,7 +38,10 @@ top_relevant_layout = html.Div(
                                 dcc.Dropdown(
                                     get_fields(),
                                     'Accounting',
-                                    id='dropdown-fields'
+                                    id='dropdown-fields',
+                                    style={
+                                        'font-family': 'HSE Font'
+                                    }
                                 )
                             ],
                         ),
@@ -184,27 +187,29 @@ def update_big_table(data, data_df):
 @app.callback(
     Output("download-excel-big-table", "data"),
     Input("btn-excel-big-table", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State("short-big-table-df", "data"),
     State("selected-rows-big-table", "data"),
     prevent_initial_call=True,
 )
-def download_big_table(n_clicks, data_df, data):
+def download_big_table(n_clicks, field, data_df, data):
     df_big_table = pd.read_json(data_df)
     df = pd.read_json(data)
     data = df[0].tolist()
     dff = df_big_table.iloc[data]
-    return dcc.send_data_frame(dff.to_excel, "top_2000_cited_docs.xlsx")
+    return dcc.send_data_frame(dff.to_excel, f"{field} top_2000_cited_docs.xlsx")
 
 
 @app.callback(
     Output("download-excel-full-big-table", "data"),
     Input("btn-excel-full-big-table", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State("full-big-table-df", "data"),
     prevent_initial_call=True,
 )
-def download_big_table(n_clicks, data_df):
+def download_big_table(n_clicks, field, data_df):
     df_big_table = pd.read_json(data_df)
-    return dcc.send_data_frame(df_big_table.to_excel, "full_top_2000_cited_docs.xlsx")
+    return dcc.send_data_frame(df_big_table.to_excel, f"{field} full_top_2000_cited_docs.xlsx")
 
 
 # callbacks charts

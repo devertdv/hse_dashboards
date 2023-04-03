@@ -40,10 +40,13 @@ def create_bar_chart(df, selected_rows=[], sort_by=[]):
     )
     fig.update_traces(marker_color="rgb(23, 45, 101)")
     fig.update_layout(
+        font_family='HSE SemiBold',
+        font_size=14,
         yaxis={"categoryorder":"trace"},
         xaxis_title=None,
         yaxis_title=None,
-        template="plotly_white",
+        paper_bgcolor='rgba(0,0,0,0)',
+        plot_bgcolor='rgba(0,0,0,0)',
         height=dff.shape[0]*70,
         width=670,
         margin=dict(l=20, r=20, t=20, b=20),

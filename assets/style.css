@@ -1,3 +1,13 @@
+@font-face {
+    font-family: HSE Font;
+    src: url("/assets/fonts/HSESans-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: HSE SemiBold;
+    src: url("/assets/fonts/HSESans-SemiBold.otf") format("opentype");
+}
+
 .row{
     display: flex;
 }
@@ -20,6 +30,7 @@
 }
 
 .btn-excel {
+    font-family: HSE SemiBold;
     margin: 20px 20px 0 0;
     position: relative;
     display: flex;
@@ -31,25 +42,27 @@ a {
 }
 
 .button-header {
+    font-family: HSE SemiBold;
     border-radius: 5px;
     background-color: white;
     border: none;
     color: #192f67;
     margin: 0 10px 0 10px;
     padding: 15px 15px;
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     text-decoration: none;
 }
 
 .button-header-current {
+    font-family: HSE SemiBold;
     border-radius: 5px;
     background-color: #192f67;
     border: none;
     color: white;
     margin: 0 10px 0 10px;
     padding: 15px 15px;
-    font-size: 16px;
+    font-size: 18px;
     text-align: center;
     text-decoration: none;
 }
@@ -89,5 +102,10 @@ a {
 }
 
 h2, h3 {
+    font-family: HSE Font;
     color: #192f67
+}
+
+p, li {
+    font-family: HSE Font;
 }

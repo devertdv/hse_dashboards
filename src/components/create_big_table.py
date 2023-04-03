@@ -27,6 +27,7 @@ def create_big_table(df, select_rows):
                             'height': 500,
                         },
                         style_cell={
+                            'font-family': 'HSE Font',
                             'minWidth': 200,
                             'width': 200,
                             'maxWidth': 200,
