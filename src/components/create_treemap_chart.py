@@ -28,7 +28,7 @@ def create_treemap_chart(df):
                     marker_colorscale=color_scale,
                     textinfo="label+value",
                     textposition='middle center',
-                    textfont=dict(size=20)
+                    textfont=dict(size=20, family='HSE SemiBold')
                     ))
     fig.update_layout(margin=dict(t=20, l=20, r=20, b=20))
     return fig

@@ -35,6 +35,7 @@ def create_pie_chart(df, column):
                                 marker_colors=color_scale_bright[::len(color_scale_bright) // len(labels)])])
     fig.update_traces(textposition='inside')
     fig.update_layout(
+        font_family='HSE SemiBold',
         uniformtext_minsize=12,
         uniformtext_mode='hide',
         margin=dict(t=3, l=3, r=3, b=3)

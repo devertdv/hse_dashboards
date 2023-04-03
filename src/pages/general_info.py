@@ -40,7 +40,10 @@ general_info_layout = html.Div(
                                 dcc.Dropdown(
                                     get_fields(),
                                     'Accounting',
-                                    id='dropdown-fields'
+                                    id='dropdown-fields',
+                                    style={
+                                        'font-family': 'HSE Font'
+                                    }
                                 )
                             ],
                         ),
@@ -439,69 +442,80 @@ def update_figure_sources(data, selected_rows, sort_by):
 @app.callback(
     Output("download-excel-author", "data"),
     Input("btn-excel-author", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State('authors-df', 'data'),
     State('table-with-figure-author', "selected_rows"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data, selected_rows):
+def func(n_clicks, field, data, selected_rows):
     df = pd.read_json(data)
     dff = df.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_excel, "authors_rate.xlsx")
+    dff = dff.sort_values(by=[dff.columns[1]], ascending=False)
+    return dcc.send_data_frame(dff.to_excel, f"{field} authors_rate.xlsx")
 
 
 @app.callback(
     Output("download-excel-organization", "data"),
     Input("btn-excel-organization", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State('organizations-df', 'data'),
     State('table-with-figure-organization', "selected_rows"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data, selected_rows):
+def func(n_clicks, field, data, selected_rows):
     df = pd.read_json(data)
     dff = df.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_excel, "organizations_rate.xlsx")
+    dff = dff.sort_values(by=[dff.columns[1]], ascending=False)
+    return dcc.send_data_frame(dff.to_excel, f"{field} organizations_rate.xlsx")
 
 
 @app.callback(
     Output("download-excel-funding", "data"),
     Input("btn-excel-funding", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State('fundings-df', 'data'),
     State('table-with-figure-funding', "selected_rows"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data, selected_rows):
+def func(n_clicks, field, data, selected_rows):
     df = pd.read_json(data)
     dff = df.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_excel, "fundings_rate.xlsx")
+    dff = dff.sort_values(by=[dff.columns[1]], ascending=False)
+    return dcc.send_data_frame(dff.to_excel, f"{field} fundings_rate.xlsx")
 
 
 @app.callback(
     Output("download-excel-country", "data"),
     Input("btn-excel-country", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State('countries-df', 'data'),
     State('table-with-figure-country', "selected_rows"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data, selected_rows):
+def func(n_clicks, field, data, selected_rows):
     df = pd.read_json(data)
     dff = df.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_excel, "countries_rate.xlsx")
+    dff = dff.sort_values(by=[dff.columns[1]], ascending=False)
+    return dcc.send_data_frame(dff.to_excel, f"{field} countries_rate.xlsx")
 
 
 @app.callback(
     Output("download-excel-source", "data"),
     Input("btn-excel-source", "n_clicks"),
+    State('dropdown-fields', 'value'),
     State('sources-df', 'data'),
     State('table-with-figure-source', "selected_rows"),
     prevent_initial_call=True,
 )
-def func(n_clicks, data, selected_rows):
+def func(n_clicks, field, data, selected_rows):
     df = pd.read_json(data)
     dff = df.iloc[selected_rows]
-    return dcc.send_data_frame(dff.to_excel, "sources_rate.xlsx")
+    dff = dff.sort_values(by=[dff.columns[1]], ascending=False)
+    return dcc.send_data_frame(dff.to_excel, f"{field} sources_rate.xlsx")
 
 
 # callback pub_dynamics
+
 
 @app.callback(
     Output('pub_dynamics', 'children'),

@@ -9,6 +9,7 @@ def create_chart_datatable(df):
                 data=df.to_dict('records'),
                 columns=[{'id': c, 'name': c} for c in df.columns],
 
+                editable=True,
                 fixed_rows={'headers': True},
                 sort_action="native",
                 sort_mode="single",
@@ -26,6 +27,7 @@ def create_chart_datatable(df):
                     'height': 350,
                 },
                 style_cell={
+                    'font-family': 'HSE Font',
                     'width': 200,
                     'maxwidth': 200,
                     'overflow': 'hidden',
